@@ -22,4 +22,5 @@ fi
 ##/ BRR ZONE
 source ${zsh_plugins}.zsh
 
-
+alias v="nvim"
+alias sz="source ${ZDOTDIR}/.zshrc"

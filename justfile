@@ -1,8 +1,7 @@
-
 svc_packages := "pipewire pipewire-pulse bluez"
 wm_packages := "hyprland xdg-desktop-portal-hyprland"
 wm_util_packages := "wofi hyprlock waybar wl-clipboard otf-font-awesome"
-dev_packages := "neovim zsh just kitty fzf"
+dev_packages := "neovim zsh just kitty fzf docker"
 
 default:
 	@just --list
@@ -30,6 +29,7 @@ make-symlinks:
 	ln -sfn ~/0files/hypr ~/.config/hypr
 	ln -sfn ~/0files/wofi ~/.config/wofi
 	ln -sfn ~/0files/nvim ~/.config/nvim
+	ln -sfn ~/0files/kitty ~/.config/kitty
 
 	# Not technically a symlink but close
 	echo 'export ZDOTDIR=~/0files/zsh' > ~/.zshenv
