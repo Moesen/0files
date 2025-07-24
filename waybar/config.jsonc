@@ -1,8 +1,8 @@
 {
   "layer": "top", "position": "top",
-  "modules-left": ["clock", "disk", "memory", "cpu", "temperature", "hyprland/window" ],
-  "modules-center": [  "hyprland/workspaces"],
-  "modules-right": ["tray",  "bluetooth", "pulseaudio", "network",  "battery" ],
+  "modules-left": [  "hyprland/workspaces", "hyprland/window" ],
+  "modules-center": ["clock", ],
+  "modules-right": ["tray", "disk", "memory", "cpu", "temperature",   "bluetooth", "pulseaudio", "network",  "battery" ],
   "reload_style_on_change":true,
 
   "hyprland/workspaces": {
@@ -15,7 +15,7 @@
 		"5": "",
 		"6": "",
 		"active": "",
-		"default": "" 
+		"default": ""
 	},
        "persistent-workspaces": {
          "*": [ 2, 3, 4, 5, 6 ]
@@ -24,7 +24,7 @@
 
 
 "clock": {
-      "format": "{:%I:%M:%S %p}",
+      "format": "{:%H:%M:%S}",
       "interval":1,
       "tooltip-format": "\n<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
       "calendar-weeks-pos": "right",
@@ -45,7 +45,7 @@
   "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
   "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
   "on-click": "rofi-bluetooth",
- }, 
+ },
 
 "network": {
       "format-wifi": " ",
@@ -103,15 +103,6 @@
     "path": "/"
   },
 
-  "custom/colorpicker": {
-    "format": "{}",
-    "return-type": "json",
-    "interval": "once",
-    "exec": "~/.config/waybar/scripts/colorpicker.sh -j",
-    "on-click": "sleep 1 && ~/.config/waybar/scripts/colorpicker.sh",
-    "signal": 1
-  },
-
   "cpu": {
       "interval": 1,
       "format": " {usage}%",
@@ -133,7 +124,7 @@
 },
 
 "temperature": {
-  "format": " {temperatureC}°C",            
+  "format": " {temperatureC}°C",
   "format-critical": " {temperatureC}°C",
   "interval": 1,
   "critical-threshold": 80,
@@ -158,13 +149,6 @@
   "on-click": "amixer sset Master toggle",
   "on-click-right": "pavucontrol",
   "tooltip-format": "{icon}  {volume}%"
-},
-
-"jack": {
-    "format": "{} 󱎔",
-    "format-xrun": "{xruns} xruns",
-    "format-disconnected": "DSP off",
-    "realtime": true
 },
 
 "tray": {
