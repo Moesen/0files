@@ -25,12 +25,12 @@ return {
         ensure_installed = {
           "lua_ls",
           "basedpyright",
-          -- "dockerls",
-          -- "ts_ls",
-          -- "tailwindcss",
-          -- "html",
-          -- "svelte",
-          -- "helm_ls",
+          "dockerls",
+          "ts_ls",
+          "tailwindcss",
+          "html",
+          "svelte",
+          "helm_ls",
           "rust_analyzer",
         },
         handlers = {

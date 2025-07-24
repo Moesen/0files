@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.python3_host_prog = "~/0files/nvim/env/.venv/bin/python3"
+vim.g.python3_host_prog = "~/0files/nvim/env/.venv/bin/python"
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -29,3 +29,4 @@ require("lazy").setup({
 require("options")
 require("keymaps")
 require("autocommands")
+require("lsp-configure")

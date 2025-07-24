@@ -5,8 +5,9 @@ autoload bashcompinit && bashcompinit
 autoload -U compinit; compinit
 
 user=$(whoami)
-# Source city 
+# Source city
 source ${ZDOTDIR}/options.zsh
+source ${ZDOTDIR}/cli-replacement-aliases.zsh
 
 eval "$(starship init zsh)"
 
@@ -24,3 +25,5 @@ source ${zsh_plugins}.zsh
 
 alias v="nvim"
 alias sz="source ${ZDOTDIR}/.zshrc"
+
+source ${ZDOTDIR}/autocompletions.zsh
