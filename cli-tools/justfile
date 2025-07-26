@@ -1,0 +1,3 @@
+make-symlinks:
+  ln -sfn ~/0files/cli-tools/zellij/ ~/.config/zellij
+  ln -sf ~/0files/cli-tools/starship.toml ~/.config/starship.toml

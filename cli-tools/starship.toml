@@ -1,0 +1,15 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+scan_timeout = 10
+
+[git_state]
+format = "\\([$state( $progress_current/$progress_total)]($style)\\) "
+disabled = false
+
+[git_metrics]
+disabled = false
+
+[kubernetes]
+disabled = false

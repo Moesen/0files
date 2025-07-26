@@ -1,3 +1,5 @@
+mod cli-tools
+
 svc_packages := "pipewire pipewire-pulse bluez"
 wm_packages := "hyprland xdg-desktop-portal-hyprland"
 wm_util_packages := "wofi hyprlock waybar wl-clipboard otf-font-awesome"
@@ -46,12 +48,11 @@ setup-work-env: install-work-packages install-work-apps
 install: install-svc-packages install-wm install-dev-tools install-rust install-rust-tools
 setup: make-symlinks install
 
-make-symlinks:
+make-symlinks: cli-tools::make-symlinks
   ln -sfn ~/0files/waybar ~/.config/waybar
   ln -sfn ~/0files/hypr ~/.config/hypr
   ln -sfn ~/0files/wofi ~/.config/wofi
   ln -sfn ~/0files/nvim ~/.config/nvim
   ln -sfn ~/0files/kitty ~/.config/kitty
-  ln -sfn ~/0files/zellij ~/.config/zellij
   # Not technically a symlink but close
   echo 'export ZDOTDIR=~/0files/zsh' > ~/.zshenv
