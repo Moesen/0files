@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
-vim.g.python3_host_prog = "~/0files/nvim/env/.venv/bin/python"
+vim.g.python3_host_prog = "~/0files/cli-tools/uv/.venv/bin/python"
+vim.o.termguicolors = true
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

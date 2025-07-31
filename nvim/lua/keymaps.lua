@@ -1,4 +1,5 @@
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)      -- Open netrw
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- Open netrw
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/0files/nvim/init.lua<CR>")
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")            -- Nicer down
 vim.keymap.set("n", "<C-u>", "<C-u>zz")            -- Nicer down

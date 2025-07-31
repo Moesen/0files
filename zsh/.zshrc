@@ -1,5 +1,6 @@
 . "$HOME/.local/bin/env"
 export PATH=$HOME/.cargo/bin:$PATH # Add cargo bin
+export PATH=$HOME/0files/cli-tools/uv/.venv/bin:$PATH # Add uv global python install
 
 autoload bashcompinit && bashcompinit
 autoload -U compinit; compinit
@@ -9,7 +10,12 @@ user=$(whoami)
 source ${ZDOTDIR}/options.zsh
 source ${ZDOTDIR}/cli-replacement-aliases.zsh
 
-eval "$(starship init zsh)"
+# Fixes starship funcnest error
+# See https://github.com/starship/starship/issues/3418#issuecomment-1711630970
+type starship_zle-keymap-select >/dev/null || \
+{
+  eval "$(starship init zsh)"
+}
 
 # Antidote (Package manager)
 zsh_plugins=${ZDOTDIR}/.zsh_plugins
@@ -23,7 +29,6 @@ fi
 ##/ BRR ZONE
 source ${zsh_plugins}.zsh
 
-alias v="nvim"
 alias sz="source ${ZDOTDIR}/.zshrc"
 
 source ${ZDOTDIR}/autocompletions.zsh

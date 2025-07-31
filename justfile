@@ -4,7 +4,7 @@ svc_packages := "pipewire pipewire-pulse bluez"
 wm_packages := "hyprland xdg-desktop-portal-hyprland"
 wm_util_packages := "wofi hyprlock waybar wl-clipboard otf-font-awesome"
 dev_dependencies := "nodejs-lts-jod npm pnpm"
-dev_packages := "neovim zsh just kitty fzf docker bat"
+dev_packages := "neovim zsh just kitty fzf docker bat jq yq"
 work_packages := "kubectl"
 work_apps := "mattermost-desktop"
 
@@ -45,6 +45,12 @@ install-work-apps:
 setup-work-env: install-work-packages install-work-apps
   [[ -d ~/alvenir/ ]] || mkdir ~/alvenir/
 
+configure-git:
+  git config --global user.name "Moesen"
+  git config --global user.email "gustavmoesmand@proton.me"
+  git config --global pull.rebase true
+  git config --global push.default current
+
 install: install-svc-packages install-wm install-dev-tools install-rust install-rust-tools
 setup: make-symlinks install
 
@@ -54,5 +60,6 @@ make-symlinks: cli-tools::make-symlinks
   ln -sfn ~/0files/wofi ~/.config/wofi
   ln -sfn ~/0files/nvim ~/.config/nvim
   ln -sfn ~/0files/kitty ~/.config/kitty
+  ln -sfn ~/0files/dunst ~/.config/dunst
   # Not technically a symlink but close
   echo 'export ZDOTDIR=~/0files/zsh' > ~/.zshenv

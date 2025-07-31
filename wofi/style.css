@@ -1,9 +1,3 @@
-@import url('/home/eli/.cache/wal/colors-waybar.css');
-
-@define-color mauve  @color9;
-@define-color red  @color9;
-@define-color lavender  @color7;
-@define-color text  @color7;
 @keyframes fadeIn {
     0% {
     }
@@ -18,21 +12,21 @@
     outline: none;
     border: none;
     text-shadow:none;
-    background-color:transparent;
 }
 
 window {
     all:unset;
     padding: 20px;
-    border-radius: 0px;
-    background-color: alpha(@background,.5);
+    border-radius: 5px;
+    background-color: alpha(#1F1F28,.9);
 }
+
 #inner-box {
     margin: 2px;
-    padding: 5px
+    padding: 5px;
     border: none;
 }
-#outer-box {    
+#outer-box {
     border: none;
 }
 #scroll {
@@ -48,14 +42,14 @@ window {
     padding: 20px;
     border: none;
     outline: none;
-    color: @text;
+    color: #DCD7BA;
     box-shadow: 1px 1px 5px rgba(0,0,0, .5);
-    border-radius:10;
-    background-color: alpha(@background,.2);
+    border-radius:10px;
+    background-color: alpha(#1F1F28,.2);
 }
 #input image {
     border: none;
-    color: @red;
+    color: #C34043;
     padding-right:10px;
 }
 #input * {
@@ -72,13 +66,13 @@ window {
 #text {
     margin: 5px;
     border: none;
-    color: @text;
+    color: #DCD7BA;
     outline: none;
 }
 #text {
     margin: 5px;
     border: none;
-    color: @text;
+    color: #DCD7BA;
     outline: none;
 }
 #entry {
@@ -88,7 +82,7 @@ window {
 }
 #entry arrow {
     border: none;
-    color: @lavender;
+    color: #957FB8;
 
 }
 #entry:selected {
@@ -98,8 +92,8 @@ window {
     background-color:transparent;
 }
 #entry:selected #text {
-    color: @mauve;
+    color: #7E9CD8;
 }
 #entry:drop(active) {
-    background-color: @lavender !important;
+    background-color: #957FB8 !important;
 }
