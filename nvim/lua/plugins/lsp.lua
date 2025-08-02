@@ -1,5 +1,9 @@
 return {
 	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
+	},
+	{
 		"neovim/nvim-lspconfig",
 		cmd = { "LspInfo" },
 		event = { "BufReadPre", "BufNewFile", "BufEnter" },
@@ -11,7 +15,6 @@ return {
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "L3MON4D3/LuaSnip" },
 		},
 		config = function()
 			-- Setup defaults
@@ -39,6 +42,7 @@ return {
 					end,
 				},
 			})
+			require("luasnip.loaders.from_vscode").lazy_load()
 			local cmp = require("cmp")
 
 			cmp.setup({
