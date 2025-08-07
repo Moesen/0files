@@ -1,6 +1,10 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh"
 . "$HOME/.local/bin/env"
 export PATH=$HOME/.cargo/bin:$PATH # Add cargo bin
 export PATH=$HOME/0files/cli-tools/uv/.venv/bin:$PATH # Add uv global python install
+
+export EDITOR="nvim"
 
 autoload bashcompinit && bashcompinit
 autoload -U compinit; compinit
@@ -32,3 +36,6 @@ source ${zsh_plugins}.zsh
 alias sz="source ${ZDOTDIR}/.zshrc"
 
 source ${ZDOTDIR}/autocompletions.zsh
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
