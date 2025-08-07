@@ -27,7 +27,6 @@ return {
 			json = { "jq" },
 			jsonc = { "jq" },
 			jsonl = { "jq" },
-			markdown = { "mdformat" },
 			rust = { "rustfmt", lst_format = "fallback" },
 			svelte = { "prettierd" },
 			["_"] = { "trim_whitespace" },
