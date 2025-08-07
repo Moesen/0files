@@ -2,7 +2,7 @@ mod cli-tools
 
 svc_packages := "pipewire pipewire-pulse bluez"
 wm_packages := "hyprland xdg-desktop-portal-hyprland"
-wm_util_packages := "wofi hyprlock waybar wl-clipboard otf-font-awesome"
+wm_util_packages := "wofi hyprlock waybar wl-clipboard otf-font-awesome thunar"
 dev_dependencies := "nodejs-lts-jod npm pnpm"
 dev_packages := "neovim zsh just kitty fzf docker bat jq yq"
 work_packages := "kubectl"
