@@ -6,6 +6,7 @@
   "modules-left": [
     "custom/power",
     "hyprland/workspaces",
+    "hyprland/window",
     "cpu",
     "memory"
   ],
@@ -21,7 +22,7 @@
     "hyprland/language"
   ],
   "hyprland/workspaces": {
-    "format": "{name}"
+    "format": "{name}",
   },
   "bluetooth": {
     "format": "󰂲",
@@ -122,5 +123,8 @@
   },
   "hyprland/language": {
     "format": "{shortDescription}"
+  },
+  "hyprland/window": {
+    "format": "{class}"
   }
 }

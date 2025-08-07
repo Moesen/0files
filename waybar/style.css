@@ -16,6 +16,7 @@ window#waybar {
 
 #custom-power,
 #workspaces,
+#window,
 #cpu,
 #memory {
   background-color: #1F1F28;
@@ -39,6 +40,12 @@ window#waybar {
   margin-right: 5px;
   padding: 5px 10px;
   font-size: 20px;
+}
+
+#window {
+  font-weight: 700;
+  min-width: 100px;
+  padding-left: 15px;
 }
 
 #custom-power:hover {
