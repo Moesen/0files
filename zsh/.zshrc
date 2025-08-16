@@ -1,6 +1,7 @@
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh"
-. "$HOME/.local/bin/env"
+[[ -f "${HOME}/.local/bin/env" ]] && . "$HOME/.local/bin/env"
+[[ -f "${HOME}/.cargo/env" ]] && . "$HOME/.cargo/env"
 export PATH=$HOME/.cargo/bin:$PATH # Add cargo bin
 export PATH=$HOME/0files/cli-tools/uv/.venv/bin:$PATH # Add uv global python install
 

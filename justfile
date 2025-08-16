@@ -4,7 +4,7 @@ svc_packages := "pipewire pipewire-pulse bluez"
 wm_packages := "hyprland xdg-desktop-portal-hyprland"
 wm_util_packages := "wofi hyprlock waybar wl-clipboard otf-font-awesome thunar"
 dev_dependencies := "nodejs-lts-jod npm pnpm"
-dev_packages := "neovim zsh just kitty fzf docker bat jq yq"
+dev_packages := "neovim zsh just kitty fzf docker bat jq yq zsh-antidote"
 work_packages := "kubectl helm helmfile"
 work_apps := "mattermost-desktop"
 
@@ -23,7 +23,7 @@ install-wm:
 install-dev-dependencies:
   yay -S --needed {{dev_dependencies}}
 [group("Yay")]
-install-dev-tools:
+install-dev-packages:
   yay -S --needed {{dev_packages}}
 [group("Yay")]
 install-rust:
@@ -60,7 +60,7 @@ configure-git:
 
 
 [group("Config")]
-make-symlinks: cli-tools::make-symlinks
+make-symlinks:
   ln -sfn ~/0files/waybar ~/.config/waybar
   ln -sfn ~/0files/hypr ~/.config/hypr
   ln -sfn ~/0files/wofi ~/.config/wofi
@@ -70,5 +70,5 @@ make-symlinks: cli-tools::make-symlinks
   # Not technically a symlink but close
   echo 'export ZDOTDIR=~/0files/zsh' > ~/.zshenv
 
-install: install-svc-packages install-wm install-dev-tools install-rust install-rust-tools
+install: install-svc-packages install-wm install-dev-packages install-rust install-rust-tools
 setup: make-symlinks install
