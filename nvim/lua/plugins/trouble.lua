@@ -1,16 +1,8 @@
 return {
 	"folke/trouble.nvim",
 	opts = {
-		modes = {
-			test = {
-				mode = "diagnostics",
-				preview = {
-					type = "split",
-					relative = "win",
-					position = "right",
-					size = 0.3,
-				},
-			},
+		win = {
+			size = 0.4,
 		},
 	}, -- for default options, refer to the configuration section for custom setup.
 	cmd = "Trouble",
@@ -27,12 +19,12 @@ return {
 		},
 		{
 			"<leader>cs",
-			"<cmd>Trouble symbols toggle focus=false size=0.3<cr>",
+			"<cmd>Trouble symbols toggle focus=false<cr>",
 			desc = "Symbols (Trouble)",
 		},
 		{
 			"<leader>cl",
-			"<cmd>Trouble lsp toggle focus=false win.position=right size=0.3<cr>",
+			"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
 			desc = "LSP Definitions / references / ... (Trouble)",
 		},
 		{
