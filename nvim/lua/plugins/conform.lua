@@ -26,6 +26,7 @@ return {
 			typescript = { "prettierd" },
 			json = { "jq" },
 			jsonc = { "jq" },
+			css = { "prettierd" },
 			jsonl = { "jq" },
 			rust = { "rustfmt", lst_format = "fallback" },
 			svelte = { "prettierd" },
