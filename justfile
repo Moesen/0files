@@ -67,6 +67,7 @@ make-symlinks:
   ln -sfn ~/0files/nvim ~/.config/nvim
   ln -sfn ~/0files/kitty ~/.config/kitty
   ln -sfn ~/0files/dunst ~/.config/dunst
+  ln -sfn ~/0files/cli-tools/zellij/ ~/.config/zellij
   # Not technically a symlink but close
   echo 'export ZDOTDIR=~/0files/zsh' > ~/.zshenv
 

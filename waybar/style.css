@@ -93,8 +93,8 @@ window#waybar {
 #custom-lock,
 #battery,
 #custom-music,
-#language,
-#tray {
+#tray,
+#language {
   background-color: #1a1b26;
   padding: 0.3rem 0.7rem;
   margin: 5px 0px;
