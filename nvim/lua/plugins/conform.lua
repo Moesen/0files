@@ -30,6 +30,7 @@ return {
 			jsonl = { "jq" },
 			rust = { "rustfmt", lst_format = "fallback" },
 			svelte = { "prettierd" },
+			terraform = { "terraform_fmt" },
 			["_"] = { "trim_whitespace" },
 		},
 

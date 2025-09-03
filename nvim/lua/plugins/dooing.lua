@@ -3,7 +3,7 @@ return {
 	config = function()
 		require("dooing").setup({
 			per_project = {
-				auto_gitignore = true,
+				auto_gitignore = false,
 				default_filename = ".dooing.json",
 				on_missing = "auto_create",
 			},

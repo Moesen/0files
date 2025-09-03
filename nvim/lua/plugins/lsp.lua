@@ -35,6 +35,8 @@ return {
 					"helm_ls",
 					"rust_analyzer",
 					"bashls",
+					"tflint",
+					"terraformls",
 				},
 				handlers = {
 					function(server_name)

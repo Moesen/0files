@@ -18,3 +18,9 @@ vim.keymap.set("v", "<S-Tab>", "<gv") -- Tab left
 vim.keymap.set("n", "<C-p>", "<C-i>") -- Have to do as <C-i> same as <S-Tab>
 
 vim.keymap.set("n", "<leader>n", "<cmd>noh<cr>") -- Stop highlighting search match
+
+-- Terraform commands
+vim.keymap.set("n", "<leader>ti", "<cmd>!terraform init<CR>")
+vim.keymap.set("n", "<leader>tv", "<cmd>!terraform validate<CR>")
+vim.keymap.set("n", "<leader>tp", "<cmd>!terraform plan<CR>")
+vim.keymap.set("n", "<leader>ta", "<cmd>!terraform apply<CR>")
