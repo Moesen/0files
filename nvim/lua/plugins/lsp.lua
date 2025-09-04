@@ -29,6 +29,7 @@ return {
 					"lua_ls",
 					"basedpyright",
 					"dockerls",
+					"ruff",
 					"ts_ls",
 					"html",
 					"svelte",
