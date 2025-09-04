@@ -65,7 +65,8 @@ make-symlinks:
   ln -sfn ~/0files/hypr ~/.config/hypr
   ln -sfn ~/0files/wofi ~/.config/wofi
   ln -sfn ~/0files/nvim ~/.config/nvim
-  ln -sfn ~/0files/kitty ~/.config/kitty
+  # ln -sfn ~/0files/terms/kitty ~/.config/kitty
+  ln -sfn ~/0files/terms/alacritty/ ~/.config/alacritty
   ln -sfn ~/0files/dunst ~/.config/dunst
   ln -sfn ~/0files/cli-tools/zellij/ ~/.config/zellij
   # Not technically a symlink but close

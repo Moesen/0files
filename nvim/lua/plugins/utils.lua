@@ -11,4 +11,6 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
 	},
+	{ "nvim-mini/mini.icons", version = "*" },
+	{ "nvim-tree/nvim-web-devicons", opts = {} },
 }
