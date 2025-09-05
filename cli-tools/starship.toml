@@ -12,4 +12,5 @@ disabled = false
 disabled = false
 
 [kubernetes]
+format = ""
 disabled = false

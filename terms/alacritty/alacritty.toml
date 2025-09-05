@@ -17,5 +17,5 @@ vi_mode_style = {shape="Beam", blinking="On"}
 
 live_config_reload = true
 import = [
-  "~/.config/alacritty/kanagawa-wave.toml",
+  "~/.config/alacritty/kanso_ink.toml",
 ]
