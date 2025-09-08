@@ -73,11 +73,12 @@ window#waybar {
   background-color: #2d4f67;
 }
 
+#custom-docker,
 #clock {
   background-color: #1f1f28;
   padding: 0.3rem 0.7rem;
-  margin: 5px 0px;
-  border-radius: 6px;
+  margin: 0px 0px;
+  border-radius: 1px;
   box-shadow: 0 1px 3px rgba(153, 209, 219, 0.2);
   min-width: 0;
   border: none;
@@ -138,6 +139,11 @@ window#waybar {
 #clock {
   color: #6a9589;
   font-weight: 500;
+}
+
+#custom-docker {
+  color: #6a9589;
+  font-weight: 700;
 }
 
 #pulseaudio {

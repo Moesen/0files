@@ -13,7 +13,8 @@
     "disk"
   ],
   "modules-center": [
-    "clock"
+    "clock",
+    "custom/docker"
   ],
   "modules-right": [
     "custom/music",
@@ -40,12 +41,19 @@
     "tooltip-format-connected": "{device_enumerate}"
   },
   "custom/music": {
-    "format": "󰝚  {}",
+    "format": "󰝚 {}",
     "escape": true,
     "interval": 5,
     "tooltip": false,
     "exec": "playerctl metadata --format='{{artist}} - {{title}}'",
     "max-length": 50
+  },
+  "custom/docker": {
+    "format": " {}",
+    "escape": true,
+    "interval": 30,
+    "exec": "docker ps -q | wc -l",
+    "tooltip": false
   },
   "clock": {
     "timezone": "CET",
