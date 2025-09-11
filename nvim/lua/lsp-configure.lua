@@ -1,3 +1,5 @@
+local helm = require("mods.helm")
+
 vim.lsp.config("basedpyright", {
 	settings = {
 		basedpyright = {
@@ -51,11 +53,29 @@ vim.lsp.config("tflint", {
 })
 
 vim.lsp.config("helm_ls", {
+	filetypes = { "helm.yaml", "helm.tmpl", "yaml" },
 	settings = {
 		["helm-ls"] = {
 			yamlls = {
+				enabled = true,
 				path = "yaml-language-server",
+				config = {
+					schemas = true,
+				},
 			},
 		},
+	},
+})
+
+vim.filetype.add({
+	extension = {
+		yaml = helm.yaml_filetype,
+		yml = helm.yaml_filetype,
+		tmpl = helm.tmpl_filetype,
+		tpl = helm.tpl_filetype,
+	},
+	filename = {
+		["Chart.yaml"] = "yaml",
+		["Chart.lock"] = "yaml",
 	},
 })
