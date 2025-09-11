@@ -24,3 +24,19 @@ vim.keymap.set("n", "<leader>ti", "<cmd>!terraform init<CR>")
 vim.keymap.set("n", "<leader>tv", "<cmd>!terraform validate<CR>")
 vim.keymap.set("n", "<leader>tp", "<cmd>!terraform plan<CR>")
 vim.keymap.set("n", "<leader>ta", "<cmd>!terraform apply<CR>")
+
+local bg_mode = "dark"
+local function set_bg()
+	vim.o.bg = bg_mode
+end
+
+local function change_bg()
+	if bg_mode == "dark" then
+		bg_mode = "light"
+	else
+		bg_mode = "dark"
+	end
+	set_bg()
+end
+
+vim.keymap.set("n", "<leader>lbg", change_bg)

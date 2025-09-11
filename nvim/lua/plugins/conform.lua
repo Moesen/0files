@@ -28,6 +28,7 @@ return {
 			jsonc = { "jq" },
 			css = { "prettierd" },
 			jsonl = { "jq" },
+			toml = { "taplo fmt" },
 			rust = { "rustfmt", lst_format = "fallback" },
 			svelte = { "prettierd" },
 			terraform = { "terraform_fmt" },
