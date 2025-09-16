@@ -1,7 +1,6 @@
 [window]
 padding = { x = 1, y = 2 }
 
-
 [font]
 normal = { family = "SauceCodePro Nerd Font Mono", style = "Normal" }
 bold = { family = "SauceCodePro Nerd Font Mono", style = "Bold" }
@@ -14,6 +13,5 @@ style = { shape = "Block", blinking = "On" }
 vi_mode_style = { shape = "Beam", blinking = "On" }
 
 [general]
-
 live_config_reload = true
 import = ["~/.config/alacritty/kanso_mist.toml"]

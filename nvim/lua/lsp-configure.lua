@@ -53,15 +53,11 @@ vim.lsp.config("tflint", {
 })
 
 vim.lsp.config("helm_ls", {
-	filetypes = { "helm.yaml", "helm.tmpl", "yaml" },
+	filetypes = { "helm.yaml", "helm.tmpl", "yaml", "helm.tpl" },
 	settings = {
 		["helm-ls"] = {
 			yamlls = {
 				enabled = true,
-				path = "yaml-language-server",
-				config = {
-					schemas = true,
-				},
 			},
 		},
 	},
