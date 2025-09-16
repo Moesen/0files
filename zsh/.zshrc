@@ -14,6 +14,7 @@ user=$(whoami)
 # Source city
 source ${ZDOTDIR}/options.zsh
 source ${ZDOTDIR}/cli-replacement-aliases.zsh
+source ${ZDOTDIR}/functions.zsh
 
 # Fixes starship funcnest error
 # See https://github.com/starship/starship/issues/3418#issuecomment-1711630970

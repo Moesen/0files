@@ -3,19 +3,17 @@ padding = { x = 1, y = 2 }
 
 
 [font]
-normal = { family="SauceCodePro Nerd Font Mono", style="Normal" }
-bold = { family="SauceCodePro Nerd Font Mono", style="Bold" }
-italic = { family="SauceCodePro Nerd Font Mono", style="Italic" }
-bold_italic = { family="SauceCodePro Nerd Font Mono", style="Bold Italic" }
-size = 13.5
+normal = { family = "SauceCodePro Nerd Font Mono", style = "Normal" }
+bold = { family = "SauceCodePro Nerd Font Mono", style = "Bold" }
+italic = { family = "SauceCodePro Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "SauceCodePro Nerd Font Mono", style = "Bold Italic" }
+size = 11
 
 [cursor]
-style = {shape="Block", blinking="On"}
-vi_mode_style = {shape="Beam", blinking="On"}
+style = { shape = "Block", blinking = "On" }
+vi_mode_style = { shape = "Beam", blinking = "On" }
 
 [general]
 
 live_config_reload = true
-import = [
-  "~/.config/alacritty/kanso_mist.toml",
-]
+import = ["~/.config/alacritty/kanso_mist.toml"]

@@ -11,3 +11,6 @@ alias k="kubectl"
 
 alias f="fzf_nvim"
 alias v="nvim"
+
+# Technically replacing ghost-script
+alias gs='nvim -c "Git | only"'
