@@ -32,3 +32,5 @@ require("options")
 require("keymaps")
 require("autocommands")
 require("lsp-configure")
+
+require("lualine").setup()
