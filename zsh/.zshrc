@@ -1,5 +1,3 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh"
 [[ -f "${HOME}/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 [[ -f "${HOME}/.cargo/env" ]] && . "$HOME/.cargo/env"
 export PATH=$HOME/.cargo/bin:$PATH # Add cargo bin
@@ -38,6 +36,3 @@ source ${zsh_plugins}.zsh
 alias sz="source ${ZDOTDIR}/.zshrc"
 
 source ${ZDOTDIR}/autocompletions.zsh
-
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"

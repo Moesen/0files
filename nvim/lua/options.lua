@@ -27,3 +27,5 @@ vim.opt.colorcolumn = "100"
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+vim.lsp.inlay_hint.enable()

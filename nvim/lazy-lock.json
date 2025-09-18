@@ -4,7 +4,7 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "bd5a7d6db125d4654b50eeae9f5217f24bb22fd3" },
   "cmp-path": { "branch": "main", "commit": "c642487086dbd9a93160e1679a1327be111cbc25" },
   "conform.nvim": { "branch": "master", "commit": "b4aab989db276993ea5dcb78872be494ce546521" },
-  "dooing": { "branch": "main", "commit": "9a938b59be09892dd6e3116332ede9b18e7fbae6" },
+  "dooing": { "branch": "main", "commit": "cd914ec59de9f249e5419d95ba7bb2508fa1bf4f" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "kanso": { "branch": "main", "commit": "151dbc23fe890d09c26df11b1208dd8129dca012" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },

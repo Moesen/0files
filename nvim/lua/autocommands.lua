@@ -1,3 +1,7 @@
+local toggle_inlay_hint = function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
 	callback = function(event)
@@ -17,5 +21,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gq", "<cmd> lua vim.diagnostic.setloclist()<cr>", opts)
 		vim.keymap.set("n", "gf", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
 		vim.keymap.set("i", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+		vim.keymap.set("n", "<leader>vih", toggle_inlay_hint, opts)
 	end,
 })
