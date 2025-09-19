@@ -20,8 +20,8 @@
     "custom/music",
     "bluetooth",
     "pulseaudio",
-    "tray",
     "battery",
+    "tray",
     "hyprland/language",
     "custom/power"
   ],
@@ -50,7 +50,7 @@
     "max-length": 50
   },
   "custom/docker": {
-    "format": "<span color='#83A598' font='12'></span>  {}",
+    "format": "<span color='#7FB4CA' font='12'></span>  {}",
     "escape": true,
     "interval": 30,
     "exec": "docker ps -q | wc -l",
@@ -61,7 +61,8 @@
     "escape": true,
     "interval": 60,
     "tooltip": false,
-    "exec": "gh api notifications --jq '.[].unread' | wc -l"
+    "exec": "gh api notifications --jq '.[].unread' | wc -l",
+    "on-click": "zen-browser https://github.com/notifications"
   },
   "clock#time": {
     "timezone": "CET",
@@ -77,9 +78,8 @@
   },
   "network": {
     "format": "{ifname}",
-    "format-wifi": "{essid} ({signalStrength}%) ",
-    "format-ethernet": "{ipaddr}/{cidr} 󰊗",
-    "format-disconnected": "",
+    "format-wifi": "   {essid}",
+    "format-ethernet": "󰊗   {ipaddr}/{cidr}",
     "tooltip-format": "{ifname} via {gwaddr} 󰊗",
     "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
     "tooltip-format-ethernet": "{ifname} ",
@@ -88,11 +88,11 @@
   },
   "cpu": {
     "interval": 1,
-    "format": "  {usage:>2}%"
+    "format": "  {usage:>2}%"
   },
   "memory": {
     "interval": 30,
-    "format": "   {used:0.0f}/{total:0.0f}GB",
+    "format": "󰍛  {used:0.0f}/{total:0.0f}GB",
     "tooltip-format": "Memory"
   },
   "disk": {
