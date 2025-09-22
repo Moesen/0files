@@ -128,7 +128,7 @@
 }
 
 #workspaces button {
-  padding: 0 0.125rem;
+  padding: 0.125 0.4rem;
   margin: 0 1px;
   color: @white;
   background: @unfocused;
