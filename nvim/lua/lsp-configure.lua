@@ -64,7 +64,7 @@ vim.lsp.config("helm_ls", {
 })
 
 vim.lsp.config("tailwindcss", {
-	filetypes = { "*.svelte" },
+	filetypes = { "svelte", "css", "html" },
 })
 
 vim.lsp.config("yamlls", {})
