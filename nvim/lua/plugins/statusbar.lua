@@ -19,6 +19,9 @@ return {
 			sections = {
 				lualine_a = { { "mode", icons_enable = true } },
 				lualine_b = {
+					{ "lsp_status" },
+				},
+				lualine_c = {
 					{
 						"branch",
 						fmt = function(str)
@@ -34,9 +37,10 @@ return {
 							return str
 						end,
 					},
+
+					{ "filename", file_status = true, path = 3, shorting_target = 60 },
 				},
-				lualine_c = { { "filename", file_status = true, path = 4 } },
-				lualine_x = { "encoding", { "filetype", icon = { align = "right" } } },
+				lualine_x = { { "encoding" }, { "filetype", icon = { align = "right" } } },
 				lualine_y = { "progress" },
 				lualine_z = { get_indent_level, "selectioncount", "location" },
 			},
