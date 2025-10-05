@@ -27,6 +27,7 @@ return {
 			json = { "jq" },
 			jsonc = { "jq" },
 			css = { "prettierd" },
+			c = { "clang-format" },
 			jsonl = { "jq" },
 			toml = { "taplo fmt" },
 			rust = { "rustfmt", lst_format = "fallback" },
