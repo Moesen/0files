@@ -19,3 +19,7 @@ disabled = false
 [kubernetes]
 format = ""
 disabled = false
+
+[[battery.display]]
+threshold = 20
+style = "bold red"

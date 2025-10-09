@@ -24,4 +24,3 @@ bindkey -M menuselect 'l' vi-forward-char
 for fp in $(ls ${ZDOTDIR}/autocompletions/*.zsh); do
   source $fp
 done
-
