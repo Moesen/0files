@@ -41,7 +41,7 @@ _fzf_compgen_dir() {
 
 fcd-widget() {
   local dir
-  dir=$(fd --type d --follow --exclude .git --exclude __pycache__ --exclude node_modules | fzf \
+  dir=$(fd . ~/ --type d --follow --ignore-file="${ZDOTDIR}/.fdignore"  | fzf \
     --preview 'eza --tree --icons --git --color=always {} | head -200' \
     --preview-window=right:60% \
     --border \
@@ -56,7 +56,7 @@ bindkey "^E" fcd-widget
 
 fzf_nvim() {
   local file
-  file=$(fd --type f --follow --hidden --exclude .git | fzf \
+  file=$(fd --type f --follow --hidden --ignore-file="${ZDOTDIR}/.fdignore"  | fzf \
     --preview 'bat -n --color=always {}' \
     --preview-window=right:60% \
     --border \

@@ -1,0 +1,16 @@
+.*
+Desktop
+Documents
+Downloads
+go
+keys
+Music
+Pictures
+Public
+qmk_firmware
+Training
+Videos
+*VirtualBox*
+node_modules
+__pycache__
+.git
