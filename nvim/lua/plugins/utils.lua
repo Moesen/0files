@@ -84,7 +84,32 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
+				surrounds = {
+					["g"] = {
+						add = function()
+							local config = require("nvim-surround.config")
+							local result = config.get_input("Enter function/generic name: ")
+							if result then
+								return { { result .. "<" }, { ">" } }
+							end
+						end,
+						find = function()
+							return require("nvim-surround.config").get_selection({ motion = "ag" })
+						end,
+					},
+					["G"] = {
+						add = function()
+							local config = require("nvim-surround.config")
+							local result = config.get_input("Enter function/generic name: ")
+							if result then
+								return { { result .. "[" }, { "]" } }
+							end
+						end,
+						find = function()
+							return require("nvim-surround.config").get_selection({ motion = "ag" })
+						end,
+					},
+				},
 			})
 		end,
 	},
