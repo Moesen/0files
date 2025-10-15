@@ -38,31 +38,4 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
-
-fcd-widget() {
-  local dir
-  dir=$(fd . ~/ --type d --follow --ignore-file="${ZDOTDIR}/.fdignore"  | fzf \
-    --preview 'eza --tree --icons --git --color=always {} | head -200' \
-    --preview-window=right:60% \
-    --border \
-    --height=80%)
-  if [[ -n $dir ]] then
-    cd $dir
-    zle reset-prompt
-  fi
-}
-zle -N fcd-widget
-bindkey "^E" fcd-widget
-
-fzf_nvim() {
-  local file
-  file=$(fd --type f --follow --hidden --ignore-file="${ZDOTDIR}/.fdignore"  | fzf \
-    --preview 'bat -n --color=always {}' \
-    --preview-window=right:60% \
-    --border \
-    --height=80%)
-  if [[ -n $file ]]; then
-    nvim $file
-  fi
-}
 source <(fzf --zsh)

@@ -15,6 +15,7 @@ user=$(whoami)
 source ${ZDOTDIR}/options.zsh
 source ${ZDOTDIR}/cli-replacement-aliases.zsh
 source ${ZDOTDIR}/functions.zsh
+source ${ZDOTDIR}/shortcuts.zsh
 
 # Fixes starship funcnest error
 # See https://github.com/starship/starship/issues/3418#issuecomment-1711630970

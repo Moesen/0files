@@ -2,13 +2,9 @@ alias find=fd
 alias cat=bat
 alias du=dust
 
-alias ls="eza --icons"
-alias lg="eza --icons --git-ignore"
-alias ll="eza -alh --git --icons"
-alias tree="eza --tree --git-ignore --icons"
-
-alias f="fzf_nvim"
+alias ls="eza --icons=auto"
+alias lg="eza --icons=auto --git-ignore"
+alias ll="eza -alh --git --icons=auto"
+alias tree="eza --tree --git-ignore --icons=auto"
 alias v="nvim"
-
-# Technically replacing ghost-script
-alias gs='nvim -c "Git | only"'
+bindkey -s "^G" "nvim -c 'Git | only'\n"
