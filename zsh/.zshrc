@@ -17,6 +17,7 @@ source ${ZDOTDIR}/cli-replacement-aliases.zsh
 source ${ZDOTDIR}/functions.zsh
 source ${ZDOTDIR}/shortcuts.zsh
 
+
 # Fixes starship funcnest error
 # See https://github.com/starship/starship/issues/3418#issuecomment-1711630970
 type starship_zle-keymap-select >/dev/null || \
@@ -37,5 +38,5 @@ fi
 source ${zsh_plugins}.zsh
 
 alias sz="source ${ZDOTDIR}/.zshrc"
-
 source ${ZDOTDIR}/autocompletions.zsh
+source ${ZDOTDIR}/fuzzy/git.zsh
