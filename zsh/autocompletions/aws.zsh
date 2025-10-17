@@ -1,4 +1,4 @@
-[[ -f /usr/local/bin/aws_completer ]] && complete -C '/usr/local/bin/aws_completer' awS
+[[ -f /usr/local/bin/aws_completer ]] && complete -C '/usr/local/bin/aws_completer' aws
 if [[ -f ~/.local/share/amazon-q/shell/zshrc.pre.zsh ]]
 then
     source ~/.local/share/amazon-q/shell/zshrc.pre.zsh
