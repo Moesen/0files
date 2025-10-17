@@ -6,7 +6,10 @@ vim.lsp.config("basedpyright", {
 			analysis = {
 				diagnosticMode = "openFilesOnly",
 				typeCheckingMode = "basic",
-				autoSearchPaths = true,
+				autoSearchPaths = false,
+				autoImportCompletions = false,
+				indexing = false,
+				useLibraryCodeForTypes = false,
 			},
 		},
 	},
