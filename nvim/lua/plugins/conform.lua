@@ -21,7 +21,8 @@ return {
 
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "isort", "ruff_format" },
+			-- python = { "isort", "ruff_format" },
+			python = { "ruff_format" },
 			javascript = { "prettierd" },
 			typescript = { "prettierd" },
 			json = { "jq" },

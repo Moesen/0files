@@ -7,7 +7,16 @@ scan_timeout = 10
 [directory]
 truncation_length = 4
 repo_root_style = "bold white"
-repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+
+[aws]
+disabled = true
+
+[azure]
+disabled = true
+
+[gcloud]
+disabled = true
 
 [git_state]
 format = "\\([$state( $progress_current/$progress_total)]($style)\\) "
@@ -17,8 +26,11 @@ disabled = false
 disabled = false
 
 [kubernetes]
-format = ""
 disabled = false
+
+[[kubernetes.contexts]]
+context_pattern = "(?P<cluster>[\\w@-]{0,29}).*"
+context_alias = "$cluster"
 
 [[battery.display]]
 threshold = 20

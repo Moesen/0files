@@ -46,4 +46,4 @@ zle -N fzf_nvim
 bindkey "^F" fzf_nvim
 
 ### Fugitive shortcut
-bindkey -s "^G" "nvim -c 'Git | only'\n"
+bindkey -s "^G^G" "nvim -c 'Git | only'\n"
