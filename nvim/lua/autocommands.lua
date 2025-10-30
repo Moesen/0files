@@ -1,3 +1,5 @@
+local Utils = require("mods.utils")
+
 local toggle_inlay_hint = function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end
@@ -5,6 +7,9 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
 	callback = function(event)
+		local wk = require("which-key")
+		wk.add({ "<leader>g", group = "LSP" })
+		wk.add({ "<leader>v", group = "LspActions" })
 		local opts = { buffer = event.buf }
 		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 		vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
@@ -12,7 +17,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
 		vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
 		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 		vim.keymap.set("n", "gci", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
 		vim.keymap.set("n", "gco", "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", opts)
 		vim.keymap.set("n", "<leader>vrn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
@@ -21,22 +26,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gq", "<cmd> lua vim.diagnostic.setloclist()<cr>", opts)
 		vim.keymap.set("n", "gf", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
 		vim.keymap.set("i", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-		vim.keymap.set("n", "<leader>vih", toggle_inlay_hint, opts)
+		vim.keymap.set("n", "<leader>gti", toggle_inlay_hint, Utils.extend_opts(opts, { desc = "Toggle inlay hints" }))
 		vim.keymap.set("n", "<leader>gd", function()
 			vim.lsp.buf.definition()
 			vim.cmd("vsplit")
-		end, vim.tbl_extend("keep", opts, { desc = "Open definition in new vsplit" }))
+		end, Utils.extend_opts(opts, { desc = "Open definition in new vsplit" }))
 		vim.keymap.set("n", "<leader>gD", function()
 			vim.lsp.buf.definition()
 			vim.cmd("split")
-		end, vim.tbl_extend("keep", opts, { desc = "Open definition in new hsplit" }))
+		end, Utils.extend_opts(opts, { desc = "Open definition in new hsplit" }))
 		vim.keymap.set("n", "<leader>go", function()
 			vim.lsp.buf.type_definition()
 			vim.cmd("vsplit")
-		end, vim.tbl_extend("keep", opts, { desc = "Open type definition in new vsplit" }))
+		end, Utils.extend_opts(opts, { desc = "Open type definition in new vsplit" }))
 		vim.keymap.set("n", "<leader>gO", function()
 			vim.lsp.buf.type_definition()
 			vim.cmd("split")
-		end, vim.tbl_extend("keep", opts, { desc = "Open type definition in new hsplit" }))
+		end, Utils.extend_opts(opts, { desc = "Open type definition in new hsplit" }))
 	end,
 })
