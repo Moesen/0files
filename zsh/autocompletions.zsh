@@ -14,7 +14,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # Sets completion to first try case sensitive, then insensitive, and also looks for partial completions
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 bindkey -v
-export KEYTIMEOUT=20
+export KEYTIMEOUT=10
 # Keybinds for traversing completion menu
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history

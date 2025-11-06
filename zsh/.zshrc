@@ -40,3 +40,11 @@ source ${zsh_plugins}.zsh
 alias sz="source ${ZDOTDIR}/.zshrc"
 source ${ZDOTDIR}/autocompletions.zsh
 source ${ZDOTDIR}/fuzzy/git.zsh
+
+# pnpm
+export PNPM_HOME="/home/moesen/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
