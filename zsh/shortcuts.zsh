@@ -1,7 +1,7 @@
 ### Dir search from home
 fcd-home-widget() {
   local dir
-  dir=$(fd . ~/ --type d --follow --ignore-file="${ZDOTDIR}/.fdignore"  | fzf \
+  dir=$(cd "$HOME" && fd . --type d --follow --ignore-file="${ZDOTDIR}/.fdignore" --strip-cwd-prefix | fzf \
     --preview 'eza --tree --icons --git --color=always {} | head -200' \
     --preview-window=right:60% \
     --border \
@@ -35,7 +35,7 @@ fcd-repo-root-widget() {
     local root
     root=$(git rev-parse --show-toplevel)
     local dir
-      dir=$(fd . $root --type d --follow --ignore-file="${ZDOTDIR}/.fdignore"  | fzf \
+      dir=$(cd "$root" && fd . --type d --follow --ignore-file="${ZDOTDIR}/.fdignore" --strip-cwd-prefix | fzf \
         --preview 'eza --tree --icons --git --color=always {} | head -200' \
         --preview-window=right:60% \
         --border \
