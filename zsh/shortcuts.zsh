@@ -7,7 +7,7 @@ fcd-home-widget() {
     --border \
     --height=80%)
   if [[ -n $dir ]] then
-    cd $dir
+    cd "$HOME/$dir"
     zle reset-prompt
   fi
 }
@@ -41,7 +41,7 @@ fcd-repo-root-widget() {
         --border \
         --height=80%)
       if [[ -n $dir ]] then
-        cd $dir
+        cd "$root/$dir"
         zle reset-prompt
       fi
 }
