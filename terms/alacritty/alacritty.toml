@@ -1,5 +1,5 @@
 [window]
-padding = { x = 1, y = 2 }
+padding = { x = 0, y = 0 }
 
 [font]
 normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Normal" }
