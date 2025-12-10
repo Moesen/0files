@@ -35,7 +35,7 @@ fcd-repo-root-widget() {
     local root
     root=$(git rev-parse --show-toplevel)
     local dir
-      dir=$(cd "$root" && fd . --type d --follow --ignore-file="${ZDOTDIR}/.fdignore" --strip-cwd-prefix | fzf \
+      dir=$(cd "$root" && {echo "."; fd . --type d --follow --ignore-file="${ZDOTDIR}/.fdignore" --strip-cwd-prefix;} | fzf \
         --preview 'eza --tree --icons --git --color=always {} | head -200' \
         --preview-window=right:60% \
         --border \
