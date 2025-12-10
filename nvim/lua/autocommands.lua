@@ -21,6 +21,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gci", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
 		vim.keymap.set("n", "gco", "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", opts)
 		vim.keymap.set("n", "<leader>vrn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+		vim.keymap.set("n", "<leader>rn", function()
+			return ":IncRename " .. vim.fn.expand("<cword>")
+		end, Utils.extend_opts(opts, { expr = true }))
 		vim.keymap.set("n", "<leader>vca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 		vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
 		vim.keymap.set("n", "gq", "<cmd> lua vim.diagnostic.setloclist()<cr>", opts)
@@ -51,5 +54,14 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		vim.opt_local.spell = true
 		vim.opt_local.colorcolumn = "50"
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufRead", {
+	callback = function()
+		if Utils.Godot.in_godot_project() then
+			Utils.Godot.start_server()
+			vim.lsp.config("gdscript", {})
+		end
 	end,
 })

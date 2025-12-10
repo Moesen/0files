@@ -29,3 +29,4 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.lsp.inlay_hint.enable()
+vim.g.inccommand = true
