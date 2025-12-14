@@ -1,0 +1,65 @@
+window {
+  margin: 0px;
+  border: 2px solid #89b4fa;
+  background-color: #1e1e2e;
+  border-radius: 15px;
+}
+
+#input {
+  margin: 5px;
+  border: none;
+  color: #cdd6f4;
+  background-color: #313244;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#inner-box {
+  margin: 5px;
+  border: none;
+  background-color: #1e1e2e;
+}
+
+#outer-box {
+  margin: 5px;
+  border: none;
+  background-color: #1e1e2e;
+}
+
+#scroll {
+  margin: 0px;
+  border: none;
+}
+
+#text {
+  margin: 5px;
+  border: none;
+  color: #cdd6f4;
+  padding: 8px 15px;
+  font-size: 14px;
+}
+
+#entry {
+  padding: 8px;
+  margin: 3px;
+  border-radius: 8px;
+  min-height: 60px; /* Make entries taller to accommodate larger icons */
+}
+
+#entry:selected {
+  background-color: #89b4fa;
+  border-radius: 8px;
+}
+
+#entry:selected #text {
+  color: #1e1e2e;
+  font-weight: bold;
+}
+
+image {
+  margin-right: 15px;
+  border-radius: 6px;
+  min-width: 48px; /* Minimum width */
+  min-height: 48px; /* Minimum height */
+  -gtk-icon-size: 60px; /* GTK icon size hint */
+}
