@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-WALLPAPER_DIR="$HOME/0files/wallpapers/Personal/"
+WALLPAPER_DIR="$HOME/0files/wallpapers/dark/"
 CURRENT_WALL=$(hyprctl hyprpaper listloaded)
 
 for monitor in $(hyprctl monitors -j | jq -r '.[] | .name'); do
