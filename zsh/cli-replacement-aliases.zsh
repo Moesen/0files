@@ -1,4 +1,3 @@
-alias find=fd
 alias cat=bat
 alias du=dust
 
