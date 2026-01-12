@@ -169,7 +169,7 @@ return {
 				notify = {
 					view = "mini",
 				},
-				message = {
+				messages = {
 					view = "vsplit",
 				},
 				-- you can enable a preset for easier configuration
