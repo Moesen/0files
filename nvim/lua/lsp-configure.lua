@@ -4,7 +4,7 @@ vim.lsp.config("basedpyright", {
 	settings = {
 		basedpyright = {
 			analysis = {
-				diagnosticMode = "openFilesOnly",
+				diagnosticMode = "workspace",
 				typeCheckingMode = "basic",
 				autoImportCompletions = true,
 				indexing = true,

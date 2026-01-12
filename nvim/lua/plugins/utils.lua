@@ -170,7 +170,7 @@ return {
 					view = "mini",
 				},
 				message = {
-					view = "mini",
+					view = "vsplit",
 				},
 				-- you can enable a preset for easier configuration
 				presets = {
