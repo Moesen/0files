@@ -2,11 +2,11 @@
 padding = { x = 0, y = 0 }
 
 [font]
-normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Normal" }
-bold = { family = "CaskaydiaCove Nerd Font Mono", style = "Bold" }
-italic = { family = "CaskaydiaCove Nerd Font Mono", style = "Italic" }
-bold_italic = { family = "CaskaydiaCove Nerd Font Mono", style = "Bold Italic" }
-size = 11
+normal = { family = "SpaceMono Nerd Font Propo", style = "Normal" }
+bold = { family = "SpaceMono Nerd Font Propo", style = "Bold" }
+italic = { family = "SpaceMono Nerd Font Propo", style = "Italic" }
+bold_italic = { family = "SpaceMono Nerd Font Propo", style = "Bold Italic" }
+size = 10
 
 [cursor]
 style = { shape = "Block", blinking = "On" }
@@ -14,4 +14,18 @@ vi_mode_style = { shape = "Beam", blinking = "On" }
 
 [general]
 live_config_reload = true
-import = ["~/.config/alacritty/kanso_mist.toml"]
+import = ["~/.config/alacritty/zenbones-dark.toml"]
+
+# Place below in /etc/fonts/local.conf to disable antialiasing
+# <?xml version="1.0" encoding="UTF-8"?>
+# <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+# <fontconfig>
+#    <match target="pattern">
+#       <test qual="any" name="family">
+#          <string>Source Code Pro</string>
+#       </test>
+#       <edit name="antialias" mode="assign">
+#          <bool>false</bool>
+#       </edit>
+#    </match>
+# </fontconfig>
