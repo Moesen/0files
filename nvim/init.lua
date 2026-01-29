@@ -33,4 +33,6 @@ require("keymaps")
 require("autocommands")
 require("lsp-configure")
 
-require("lualine").setup()
+require("lualine").setup({
+	options = { theme = "zenbones" },
+})
