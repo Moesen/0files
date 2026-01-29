@@ -11,27 +11,6 @@ local function get_indent_level()
 	return "󱁐 " .. indent_count
 end
 
-local fugitive_extension = {
-	sections = {
-		lualine_a = { "mode" },
-		lualine_b = {
-			function()
-				return "GIT"
-			end,
-		},
-		lualine_c = {
-			{
-				function()
-					return vim.fn.FugitiveHead()
-				end,
-				icon = "",
-			},
-		},
-		lualine_z = { "location" },
-	},
-	filetypes = { "fugitive" },
-}
-
 return {
 	{
 		"nvim-lualine/lualine.nvim",
@@ -59,13 +38,12 @@ return {
 						end,
 					},
 
-					{ "filename", file_status = true, path = 3, shorting_target = 60 },
+					{ "filename", file_status = false, path = 1, shorting_target = 40 },
 				},
-				lualine_x = { { "encoding" }, { "filetype", icon = { align = "right" } } },
+				lualine_x = { { "filetype", icon_only = true, icon = { align = "right" } } },
 				lualine_y = { "progress" },
-				lualine_z = { get_indent_level, "selectioncount", "location" },
+				lualine_z = { get_indent_level, "searchcount", "selectioncount", "location" },
 			},
-			extensions = { fugitive_extension },
 		},
 	},
 }

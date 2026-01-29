@@ -2,7 +2,7 @@ local Color = require("mods.color")
 local wk = require("which-key")
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open netrw" })
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/0files/nvim/init.lua<CR>", { desc = "Open init.lua" })
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/0files/nvim/<CR>", { desc = "Open init.lua" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Nicer down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Nicer up" })
