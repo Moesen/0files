@@ -36,3 +36,6 @@ require("lsp-configure")
 require("lualine").setup({
 	options = { theme = "zenbones" },
 })
+
+local Colors = require("mods.color")
+Colors.set_bg()

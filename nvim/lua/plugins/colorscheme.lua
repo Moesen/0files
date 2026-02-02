@@ -23,7 +23,7 @@ return {
 	priority = 1000,
 	-- you can set set configuration options here
 	config = function()
-		vim.g.zenbones_darken_comments = 10
+		vim.g.zenbones_darken_comments = 50
 		vim.g.zenbones_solid_line_nr = true
 		-- vim.g.zenbones_darkness = "warm"
 		vim.cmd.colorscheme("zenbones")

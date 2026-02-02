@@ -29,8 +29,13 @@ disabled = false
 disabled = false
 
 [[kubernetes.contexts]]
-context_pattern = "(?P<cluster>[\\w@-]{0,29}).*"
-context_alias = "$cluster"
+context_pattern = "arn:aws:eks:[\\w-]+:(?P<account>\\d+):cluster/(?P<cluster>[\\w-]+)"
+context_alias = "aws @ $account/$cluster"
+
+[[kubernetes.contexts]]
+context_pattern = "(?P<user>[\\w-]+)@(?P<cluster>.+?)-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+context_alias = "scw @ $user/$cluster"
+
 
 [[battery.display]]
 threshold = 20

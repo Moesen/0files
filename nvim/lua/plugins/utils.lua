@@ -169,6 +169,14 @@ return {
 						view = "mini",
 					},
 				},
+				routes = {
+					{
+						filter = {
+							kind = "warn",
+						},
+						view = "mini",
+					},
+				},
 				notify = {
 					view = "mini",
 				},

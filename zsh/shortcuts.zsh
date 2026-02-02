@@ -1,7 +1,7 @@
 ### Dir search from home
 fcd-home-widget() {
   local dir
-  dir=$(cd "$HOME" && fd . --type d --follow --ignore-file="${ZDOTDIR}/.fdignore" --strip-cwd-prefix | fzf \
+  dir=$(cd "$HOME" && {echo "."; fd . --type d --follow --ignore-file="${ZDOTDIR}/.fdignore" --strip-cwd-prefix;} | fzf \
     --preview 'eza --tree --icons --git --color=always {} | head -200' \
     --preview-window=right:60% \
     --border \
