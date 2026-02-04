@@ -28,8 +28,8 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
-					"basedpyright",
 					"dockerls",
+					"ty",
 					"ruff",
 					"ts_ls",
 					"html",

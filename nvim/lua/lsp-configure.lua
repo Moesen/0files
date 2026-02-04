@@ -1,15 +1,8 @@
 local helm = require("mods.helm")
 
-vim.lsp.config("basedpyright", {
+vim.lsp.config("ty", {
 	settings = {
-		basedpyright = {
-			analysis = {
-				diagnosticMode = "openFilesOnly",
-				typeCheckingMode = "basic",
-				autoImportCompletions = true,
-				indexing = true,
-			},
-		},
+		ty = {},
 	},
 })
 
