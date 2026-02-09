@@ -7,10 +7,9 @@ return {
 			-- Customize or remove this keymap to your liking
 			"<leader>f",
 			function()
-				require("conform").format({ async = true })
+				require("conform").format({ formatters = { "ruff_fix" } })
 			end,
-			mode = "",
-			desc = "Format buffer",
+			desc = "Run ruff fix",
 		},
 	},
 	-- This will provide type hinting with LuaLS

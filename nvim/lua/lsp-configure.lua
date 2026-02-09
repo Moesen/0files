@@ -1,10 +1,23 @@
 local helm = require("mods.helm")
 
-vim.lsp.config("ty", {
+vim.lsp.config("basedpyright", {
 	settings = {
-		ty = {},
+		basedpyright = {
+			analysis = {
+				diagnosticMode = "openFilesOnly",
+				typeCheckingMode = "basic",
+				autoImportCompletions = true,
+				indexing = true,
+			},
+		},
 	},
 })
+
+-- vim.lsp.config("ty", {
+-- 	settings = {
+-- 		ty = {},
+-- 	},
+-- })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
