@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = ";"
 vim.g.python3_host_prog = "~/0files/cli-tools/uv/.venv/bin/python"
 vim.o.termguicolors = true
 
