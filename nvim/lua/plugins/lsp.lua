@@ -29,8 +29,8 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"dockerls",
-					"basedpyright",
-					-- "ty",
+					-- "basedpyright",
+					"ty",
 					"ruff",
 					"ts_ls",
 					"html",

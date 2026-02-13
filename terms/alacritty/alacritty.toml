@@ -14,7 +14,7 @@ vi_mode_style = { shape = "Beam", blinking = "On" }
 
 [general]
 live_config_reload = true
-import = ["~/.config/alacritty/zenbones-dark.toml"]
+import = ["~/.config/alacritty/themes/moonfly.toml"]
 
 # Place below in /etc/fonts/local.conf to disable antialiasing
 # <?xml version="1.0" encoding="UTF-8"?>
