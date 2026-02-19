@@ -206,4 +206,5 @@ return {
 		"smjonas/inc-rename.nvim",
 		opts = {},
 	},
+	{ "lewis6991/gitsigns.nvim" },
 }

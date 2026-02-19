@@ -1,3 +1,18 @@
+### Select AWS Profile
+fcd-aws-profile-widget() {
+    local profile
+    profile=$(aws configure list-profiles | fzf \
+        --preview-window=right:60% \
+        --border \
+        --height=80%)
+    if [[ -n $profile ]] then
+        export AWS_PROFILE=$profile
+        zle reset-prompt
+    fi
+}
+zle -N fcd-aws-profile-widget
+bindkey "^P" fcd-aws-profile-widget
+
 ### Dir search from home
 fcd-home-widget() {
   local dir

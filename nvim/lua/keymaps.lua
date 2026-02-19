@@ -3,6 +3,16 @@ local wk = require("which-key")
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open netrw" })
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/0files/nvim/<CR>", { desc = "Open init.lua" })
+-- Open netrw in repo root if it exists
+vim.keymap.set("n", "<leader>pr", function()
+	local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+	if vim.v.shell_error == 0 then
+		vim.cmd("cd " .. git_root)
+		vim.cmd("Ex")
+	else
+		print("Not in a git repository")
+	end
+end, { desc = "Open netrw at repo root" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Nicer down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Nicer up" })
