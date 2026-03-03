@@ -1,5 +1,5 @@
-# Kiro CLI pre block. Keep at the top of this file.
-[[ -f "${HOME}/.local/share/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/zshrc.pre.zsh"
+
+
 [[ -f "${HOME}/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 [[ -f "${HOME}/.cargo/env" ]] && . "$HOME/.cargo/env"
 export PATH=$HOME/.cargo/bin:$PATH # Add cargo bin
@@ -51,8 +51,8 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/.local/share/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/zshrc.post.zsh"
 
 [[ -d "$HOME/.krew" ]] && export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+
 
