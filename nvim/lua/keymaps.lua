@@ -43,3 +43,5 @@ wk.add({ "<leader>m", group = "Mods" })
 wk.add({ "<leader>p", group = "Telescope" })
 vim.keymap.set("n", "<leader>mbg", Color.change_bg, { desc = "Change background" })
 wk.add({ "<leader>x", group = "Trouble" })
+
+wk.add({ "<leader>o", group = "Octo" })
