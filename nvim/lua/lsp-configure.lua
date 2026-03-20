@@ -92,6 +92,7 @@ vim.filetype.add({
 		yml = helm.yaml_filetype,
 		tmpl = helm.tmpl_filetype,
 		tpl = helm.tpl_filetype,
+		gotml = helm.tpl_filetype,
 	},
 	filename = {
 		["Chart.yaml"] = "yaml",
