@@ -29,7 +29,7 @@ install-dev-packages:
 install-rust:
   yay -S --needed rustup
 [group("Cargo")]
-install-rust-tools: install-rust
+install-rust-tools:
   cargo install starship --locked
   cargo install du-dust --locked
   cargo install fd-find --locked
@@ -61,13 +61,8 @@ configure-git:
 
 [group("Config")]
 make-symlinks:
-  ln -sfn ~/0files/waybar ~/.config/waybar
-  ln -sfn ~/0files/hypr ~/.config/hypr
-  ln -sfn ~/0files/wofi ~/.config/wofi
   ln -sfn ~/0files/nvim ~/.config/nvim
-  # ln -sfn ~/0files/terms/kitty ~/.config/kitty
   ln -sfn ~/0files/terms/alacritty/ ~/.config/alacritty
-  ln -sfn ~/0files/dunst ~/.config/dunst
   ln -sfn ~/0files/cli-tools/zellij/ ~/.config/zellij
   # Not technically a symlink but close
   echo 'export ZDOTDIR=~/0files/zsh' > ~/.zshenv

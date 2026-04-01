@@ -1,1 +1,0 @@
-eval "$(helmfile completion zsh)"

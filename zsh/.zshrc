@@ -1,5 +1,3 @@
-
-
 [[ -f "${HOME}/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 [[ -f "${HOME}/.cargo/env" ]] && . "$HOME/.cargo/env"
 export PATH=$HOME/.cargo/bin:$PATH # Add cargo bin
@@ -54,5 +52,13 @@ esac
 
 [[ -d "$HOME/.krew" ]] && export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-
-
+# Add Standard GNU Tools to path
+# see: https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX=$(brew --prefix)
+  NEWPATH=${PATH}
+  # gnubin; gnuman
+  for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do NEWPATH=$d:$NEWPATH; done
+  for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
+ export PATH=$(echo ${NEWPATH} | tr ':' '\n' | cat -n | sort -uk2 | sort -n | cut -f2- | xargs | tr ' ' ':')
+fi
