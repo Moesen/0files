@@ -8,7 +8,4 @@ HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
 HISTFILE=${HOME}/.zsh_history
 HISTORY_IGNORE="(l[alsh]#( *)#)"
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-export BROWSER="zen.desktop"
+export BROWSER=open

@@ -36,6 +36,8 @@ install-rust-tools:
   cargo install eza --locked
   cargo install zellij --locked
   cargo install zoxide --locked
+  cargo install bat --locked
+  cargo install ripgrep --locked
 [group("Cargo")]
 install-uv: install-rust
   cargo install --locked --git https://github.com/astral-sh/uv uv
@@ -54,18 +56,18 @@ setup-work-env: install-work-packages install-work-apps
 [group("Config")]
 configure-git:
   git config --global user.name "Moesen"
-  git config --global user.email "gustavmoesmand@proton.me"
+  git config --global user.email "gustav@moesen.dk"
   git config --global pull.rebase true
   git config --global push.default current
-
 
 [group("Config")]
 make-symlinks:
   ln -sfn ~/0files/nvim ~/.config/nvim
   ln -sfn ~/0files/terms/alacritty/ ~/.config/alacritty
   ln -sfn ~/0files/cli-tools/zellij/ ~/.config/zellij
+  ln -sfn ~/0files/aerospace/.aerospace.toml ~/.aerospace.toml
   # Not technically a symlink but close
-  echo 'export ZDOTDIR=~/0files/zsh' > ~/.zshenv
+  ln -sfn ~/0files/zsh/.zshenv ~/.zshenv
 
 install: install-svc-packages install-wm install-dev-packages install-rust install-rust-tools
 setup: make-symlinks install
