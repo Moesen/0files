@@ -1,59 +1,68 @@
 local Utils = require("mods.utils")
 
 local toggle_inlay_hint = function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end
 
+
 vim.api.nvim_create_autocmd("LspAttach", {
-	desc = "LSP actions",
-	callback = function(event)
-		local wk = require("which-key")
-		wk.add({ "<leader>g", group = "LSP" })
-		wk.add({ "<leader>v", group = "LspActions" })
-		local opts = { buffer = event.buf }
-		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-		vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-		vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-		vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-		vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
-		vim.keymap.set("n", "gci", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
-		vim.keymap.set("n", "gco", "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", opts)
-		vim.keymap.set("n", "<leader>vrn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-		vim.keymap.set("n", "<leader>rn", function()
-			return ":IncRename " .. vim.fn.expand("<cword>")
-		end, Utils.extend_opts(opts, { expr = true }))
-		vim.keymap.set("n", "<leader>vca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-		vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
-		vim.keymap.set("n", "gq", "<cmd> lua vim.diagnostic.setloclist()<cr>", opts)
-		vim.keymap.set("n", "gf", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
-		vim.keymap.set("i", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-		vim.keymap.set("n", "gti", toggle_inlay_hint, Utils.extend_opts(opts, { desc = "Toggle inlay hints" }))
-		vim.keymap.set("n", "gD", function()
-			vim.lsp.buf.definition()
-			vim.cmd("vsplit")
-		end, Utils.extend_opts(opts, { desc = "Open definition in new vsplit" }))
-		vim.keymap.set("n", "gO", function()
-			vim.lsp.buf.type_definition()
-			vim.cmd("vsplit")
-		end, Utils.extend_opts(opts, { desc = "Open type definition in new vsplit" }))
-	end,
+    desc = "LSP actions",
+    callback = function(event)
+        local wk = require("which-key")
+        wk.add({ "<leader>g", group = "LSP" })
+        wk.add({ "<leader>v", group = "LspActions" })
+        local opts = { buffer = event.buf }
+        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+        vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+        vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+        vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+        vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+        vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+        vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+        vim.keymap.set("n", "gci", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
+        vim.keymap.set("n", "gco", "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", opts)
+        vim.keymap.set("n", "<leader>vrn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+        vim.keymap.set("n", "<leader>rn", function()
+            return ":IncRename " .. vim.fn.expand("<cword>")
+        end, Utils.extend_opts(opts, { expr = true }))
+        vim.keymap.set("n", "<leader>vca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+        vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+        vim.keymap.set("n", "gq", "<cmd> lua vim.diagnostic.setloclist()<cr>", opts)
+        vim.keymap.set("n", "gf", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
+        vim.keymap.set("i", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+        vim.keymap.set("n", "gti", toggle_inlay_hint, Utils.extend_opts(opts, { desc = "Toggle inlay hints" }))
+        vim.keymap.set("n", "gD", function()
+            vim.lsp.buf.definition()
+            vim.cmd("vsplit")
+        end, Utils.extend_opts(opts, { desc = "Open definition in new vsplit" }))
+        vim.keymap.set("n", "gO", function()
+            vim.lsp.buf.type_definition()
+            vim.cmd("vsplit")
+        end, Utils.extend_opts(opts, { desc = "Open type definition in new vsplit" }))
+    end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "gitcommit",
-	callback = function()
-		vim.opt_local.spell = true
-		vim.opt_local.colorcolumn = "50"
-	end,
+    pattern = "gitcommit",
+    callback = function()
+        vim.opt_local.spell = true
+        vim.opt_local.colorcolumn = "50"
+    end,
 })
 
 vim.api.nvim_create_autocmd("BufRead", {
-	callback = function()
-		if Utils.Godot.in_godot_project() then
-			Utils.Godot.start_server()
-			vim.lsp.config("gdscript", {})
-		end
-	end,
+    callback = function()
+        vim.treesitter.start()
+        vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo[0][0].foldmethod = "expr"
+    end
 })
+
+-- vim.api.nvim_create_autocmd("BufRead", {
+--     callback = function()
+--         if Utils.Godot.in_godot_project() then
+--             Utils.Godot.start_server()
+--             vim.lsp.config("gdscript", {})
+--         end
+--     end,
+-- })
