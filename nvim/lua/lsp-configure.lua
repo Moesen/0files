@@ -80,4 +80,17 @@ vim.lsp.config("tailwindcss", {
     filetypes = { "svelte", "css", "html" },
 })
 
-vim.lsp.config("yamlls", {})
+vim.lsp.config("yamlls", {
+    settings = {
+        yaml = {
+            schemas = {
+                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = {
+                    "docker-compose.yaml",
+                    "docker-compose.yml",
+                    "compose.yaml",
+                    "compose.yml",
+                },
+            },
+        },
+    },
+})

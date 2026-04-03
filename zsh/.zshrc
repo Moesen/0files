@@ -34,7 +34,6 @@ source ${ZDOTDIR}/options.zsh
 # Source autocompletions (and bindkey -v) BEFORE shortcuts to avoid overwriting bindings
 source ${ZDOTDIR}/autocompletions.zsh
 source ${ZDOTDIR}/cli-replacement-aliases.zsh
-source ${ZDOTDIR}/functions.zsh
 source ${ZDOTDIR}/shortcuts.zsh
 
 
@@ -67,4 +66,8 @@ if type brew &>/dev/null; then
   for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do
     [[ -d $d ]] && manpath=($d $manpath)
   done
+fi
+
+if [[ -d "/opt/homebrew/opt/libpq/bin/" ]]; then
+    export PATH="/opt/homebrew/opt/libpq/bin/:$PATH"
 fi

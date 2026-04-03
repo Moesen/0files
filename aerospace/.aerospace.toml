@@ -6,8 +6,6 @@ config-version = 2
 persistent-workspaces = []
 
 after-startup-command = [
-    # JankyBorders has a built-in detection of already running process,
-    # so it won't be run twice on AeroSpace restart
     'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
 
@@ -65,7 +63,6 @@ after-startup-command = [
     cmd-7 = 'workspace 7'
     cmd-8 = 'workspace 8'
     cmd-9 = 'workspace 9'
-    cmd-0 = 'workspace 10'
 
     cmd-shift-1 = 'move-node-to-workspace 1'
     cmd-shift-2 = 'move-node-to-workspace 2'
@@ -76,7 +73,6 @@ after-startup-command = [
     cmd-shift-7 = 'move-node-to-workspace 7'
     cmd-shift-8 = 'move-node-to-workspace 8'
     cmd-shift-9 = 'move-node-to-workspace 9'
-    cmd-shift-0 = 'move-node-to-workspace 10'
 
     cmd-shift-c = 'reload-config'
 
