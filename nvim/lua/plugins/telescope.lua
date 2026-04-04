@@ -19,6 +19,11 @@ return {
 		},
 	},
 	opts = {
+		defaults = {
+			preview = {
+				treesitter = false,
+			},
+		},
 		pickers = {
 			find_files = {},
 			spell_suggest = {
