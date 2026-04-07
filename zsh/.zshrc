@@ -71,3 +71,11 @@ fi
 if [[ -d "/opt/homebrew/opt/libpq/bin/" ]]; then
     export PATH="/opt/homebrew/opt/libpq/bin/:$PATH"
 fi
+
+source-pipenv() {
+    if pipenv --venv >/dev/null 2>&1; then
+        eval $(pipenv activate)
+    else
+        echo "Could not find pipenv environment here"
+    fi
+}

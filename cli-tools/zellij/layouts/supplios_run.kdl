@@ -1,0 +1,17 @@
+layout {
+    tab name="docker-runners" cwd="~/Supplios/supplios-app/django_app/" {
+        pane split_direction="horizontal" {
+            pane split_direction="vertical" {
+                pane cmd="docker" args="ps"
+                pane
+            }
+            pane split_direction="vertical" {
+                pane
+                pane
+            }
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+    }
+}
