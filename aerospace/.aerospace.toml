@@ -9,6 +9,17 @@ after-startup-command = [
     'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
 
+[workspace-to-monitor-force-assignment]
+   1 = '^dell.*$'
+   2 = 'main'
+   3 = '^dell.*$'
+   4 = 'main'
+   5 = '^dell.*$'
+   6 = 'main'
+   7 = 'main'
+   8 = 'main'
+   9 = 'main'
+
 [mode.main.binding]
     # cmd-h = [] # Disable "Hide application"
     # cmd-alt-h = [] # Disable "Hide others"
@@ -23,10 +34,10 @@ after-startup-command = [
     '''
 
     # i3 wraps focus by default
-    cmd-h =         'focus --boundaries-action wrap-around-the-workspace left'
-    cmd-j =         'focus --boundaries-action wrap-around-the-workspace down'
-    cmd-k =         'focus --boundaries-action wrap-around-the-workspace up'
-    cmd-l = 'focus --boundaries-action wrap-around-the-workspace right'
+    cmd-h =         'focus --boundaries-action wrap-around-the-workspace left --boundaries all-monitors-outer-frame'
+    cmd-j =         'focus --boundaries-action wrap-around-the-workspace down --boundaries all-monitors-outer-frame'
+    cmd-k =         'focus --boundaries-action wrap-around-the-workspace up --boundaries all-monitors-outer-frame'
+    cmd-l =         'focus --boundaries-action wrap-around-the-workspace right --boundaries all-monitors-outer-frame'
 
     cmd-shift-h = 'move left'
     cmd-shift-j = 'move down'
@@ -85,3 +96,15 @@ after-startup-command = [
     l = 'resize width +50'
     enter = 'mode main'
     esc = 'mode main'
+
+[[on-window-detected]]
+    if.app-name-regex-substring = "Slack"
+    run = ["move-node-to-workspace 9"]
+
+[[on-window-detected]]
+    if.app-name-regex-substring = "Spotify"
+    run = ["move-node-to-workspace 8"]
+
+[[on-window-detected]]
+    if.app-name-regex-substring = "Zen"
+    run = ["move-node-to-workspace 2"]
