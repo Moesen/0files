@@ -64,6 +64,7 @@ configure-git:
 make-symlinks:
   ln -sfn ~/0files/nvim ~/.config/nvim
   ln -sfn ~/0files/terms/alacritty/ ~/.config/alacritty
+  ln -sfn ~/0files/terms/ghostty/ ~/.config/ghostty
   ln -sfn ~/0files/cli-tools/zellij/ ~/.config/zellij
   ln -sfn ~/0files/aerospace/.aerospace.toml ~/.aerospace.toml
   # Not technically a symlink but close

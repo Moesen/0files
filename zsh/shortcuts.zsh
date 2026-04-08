@@ -1,3 +1,18 @@
+fcd-zellij-widget() {
+    local layout_file
+    layout_file=$(cd "$HOME/0files/cli-tools/zellij/layouts" && fd . --type f --ignore-file="${ZDOTDIR}/.fdignore" --strip-cwd-prefix | fzf \
+    --preview 'bat -n --color=always {}' \
+    --preview-window=right:60% \
+    --border \
+    --height=80%)
+    if [[ -n $layout_file ]] then
+        zellij --layout="$HOME/0files/cli-tools/zellij/layouts/$layout_file"
+        zle reset-prompt
+    fi
+}
+zle -N fcd-zellij-widget
+bindkey "^N" fcd-zellij-widget
+
 ### Dir search from home
 fcd-home-widget() {
   local dir

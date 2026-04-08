@@ -1,13 +1,18 @@
 [window]
 padding = { x = 0, y = 0 }
 option_as_alt = "Both"
+decorations = "None"
+dynamic_padding = true
 
 [font]
 normal = { family = "MesloLGL Nerd Font", style = "Regular" }
 bold = { family = "MesloLGL Nerd Font", style = "Bold" }
 italic = { family = "MesloLGL Nerd Font", style = "Italic" }
 bold_italic = { family = "MesloLGL Nerd Font", style = "Bold Italic" }
-size = 13
+size = 15
+
+# [debug]
+# render_timer = true
 
 [cursor]
 style = { shape = "Block", blinking = "On" }
