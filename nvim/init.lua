@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 vim.g.python3_host_prog = "~/0files/cli-tools/uv/.venv/bin/python"
 vim.o.termguicolors = true
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 local function normalize_path()
     local seen = {}
