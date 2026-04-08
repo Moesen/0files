@@ -2,34 +2,34 @@ local Color = require("mods.color")
 local wk = require("which-key")
 
 local function open_neotree(opts)
-	require("neo-tree.command").execute(vim.tbl_extend("force", {
-		source = "filesystem",
-		position = "left",
-		reveal = true,
-		action = "focus",
-	}, opts or {}))
+    require("neo-tree.command").execute(vim.tbl_extend("force", {
+        source = "filesystem",
+        position = "left",
+        reveal = true,
+        action = "focus",
+    }, opts or {}))
 end
 
 vim.keymap.set("n", "<C-n>", function()
-	require("neo-tree.command").execute({
-		source = "filesystem",
-		position = "left",
-		toggle = true,
-	})
+    require("neo-tree.command").execute({
+        source = "filesystem",
+        position = "left",
+        toggle = true,
+    })
 end, { desc = "Toggle file tree" })
-vim.keymap.set("n", "<leader>pt", function()
-	open_neotree()
+vim.keymap.set("n", "<leader>pv", function()
+    open_neotree()
 end, { desc = "Focus file tree" })
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/0files/nvim/<CR>", { desc = "Open init.lua" })
 -- Open file tree in repo root if it exists
 vim.keymap.set("n", "<leader>pr", function()
-	local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
-	if vim.v.shell_error == 0 then
-		vim.cmd("cd " .. vim.fn.fnameescape(git_root))
-		open_neotree({ dir = git_root })
-	else
-		print("Not in a git repository")
-	end
+    local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+    if vim.v.shell_error == 0 then
+        vim.cmd("cd " .. vim.fn.fnameescape(git_root))
+        open_neotree({ dir = git_root })
+    else
+        print("Not in a git repository")
+    end
 end, { desc = "Focus file tree at repo root" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Nicer down" })
@@ -39,7 +39,7 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank selection to c
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank whole line" })
 
 vim.keymap.set("n", "<leader><leader>", function()
-	vim.cmd("so")
+    vim.cmd("so")
 end, { desc = "Nvim source current file" })
 
 vim.keymap.set("n", "<Tab>", ">>", { desc = "Tab right" })
@@ -66,77 +66,77 @@ wk.add({ "<leader>o", group = "Octo" })
 
 -- in your config (e.g. lua/utils/yank_matches.lua or directly in init.lua)
 local function yank_matches(pattern)
-	if not pattern or pattern == "" then
-		vim.ui.input({ prompt = "Pattern: " }, function(input)
-			if input then
-				yank_matches(input)
-			end
-		end)
-		return
-	end
+    if not pattern or pattern == "" then
+        vim.ui.input({ prompt = "Pattern: " }, function(input)
+            if input then
+                yank_matches(input)
+            end
+        end)
+        return
+    end
 
-	local results = {}
-	for lnum = 1, vim.api.nvim_buf_line_count(0) do
-		local line = vim.api.nvim_buf_get_lines(0, lnum - 1, lnum, false)[1]
-		for match in line:gmatch(pattern) do
-			table.insert(results, { lnum = lnum, text = match, line = line })
-		end
-	end
+    local results = {}
+    for lnum = 1, vim.api.nvim_buf_line_count(0) do
+        local line = vim.api.nvim_buf_get_lines(0, lnum - 1, lnum, false)[1]
+        for match in line:gmatch(pattern) do
+            table.insert(results, { lnum = lnum, text = match, line = line })
+        end
+    end
 
-	if #results == 0 then
-		vim.notify("No matches found", vim.log.levels.WARN)
-		return
-	end
+    if #results == 0 then
+        vim.notify("No matches found", vim.log.levels.WARN)
+        return
+    end
 
-	local pickers = require("telescope.pickers")
-	local finders = require("telescope.finders")
-	local conf = require("telescope.config").values
-	local actions = require("telescope.actions")
-	local action_state = require("telescope.actions.state")
+    local pickers = require("telescope.pickers")
+    local finders = require("telescope.finders")
+    local conf = require("telescope.config").values
+    local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
 
-	pickers
-		.new({}, {
-			prompt_title = "Matches for: " .. pattern,
-			finder = finders.new_table({
-				results = results,
-				entry_maker = function(entry)
-					return {
-						value = entry,
-						display = entry.lnum .. ": " .. entry.text,
-						ordinal = entry.text,
-						filename = vim.api.nvim_buf_get_name(0),
-						lnum = entry.lnum,
-					}
-				end,
-			}),
-			sorter = conf.generic_sorter({}),
-			previewer = conf.grep_previewer({}),
-			attach_mappings = function(prompt_bufnr, map)
-				-- <CR> copies selected match
-				actions.select_default:replace(function()
-					local selection = action_state.get_selected_entry()
-					actions.close(prompt_bufnr)
-					vim.fn.setreg("+", selection.value.text)
-					vim.notify("Copied: " .. selection.value.text)
-				end)
-				-- <C-y> copies ALL matches
-				map("i", "<C-y>", function()
-					local all = table.concat(
-						vim.tbl_map(function(r)
-							return r.text
-						end, results),
-						"\n"
-					)
-					actions.close(prompt_bufnr)
-					vim.fn.setreg("+", all)
-					vim.notify(("Copied all %d matches"):format(#results))
-				end)
-				return true
-			end,
-		})
-		:find()
+    pickers
+        .new({}, {
+            prompt_title = "Matches for: " .. pattern,
+            finder = finders.new_table({
+                results = results,
+                entry_maker = function(entry)
+                    return {
+                        value = entry,
+                        display = entry.lnum .. ": " .. entry.text,
+                        ordinal = entry.text,
+                        filename = vim.api.nvim_buf_get_name(0),
+                        lnum = entry.lnum,
+                    }
+                end,
+            }),
+            sorter = conf.generic_sorter({}),
+            previewer = conf.grep_previewer({}),
+            attach_mappings = function(prompt_bufnr, map)
+                -- <CR> copies selected match
+                actions.select_default:replace(function()
+                    local selection = action_state.get_selected_entry()
+                    actions.close(prompt_bufnr)
+                    vim.fn.setreg("+", selection.value.text)
+                    vim.notify("Copied: " .. selection.value.text)
+                end)
+                -- <C-y> copies ALL matches
+                map("i", "<C-y>", function()
+                    local all = table.concat(
+                        vim.tbl_map(function(r)
+                            return r.text
+                        end, results),
+                        "\n"
+                    )
+                    actions.close(prompt_bufnr)
+                    vim.fn.setreg("+", all)
+                    vim.notify(("Copied all %d matches"):format(#results))
+                end)
+                return true
+            end,
+        })
+        :find()
 end
 
 vim.api.nvim_create_user_command("YankMatches", function(opts)
-	yank_matches(opts.args ~= "" and opts.args or nil)
+    yank_matches(opts.args ~= "" and opts.args or nil)
 end, { nargs = "?" })
