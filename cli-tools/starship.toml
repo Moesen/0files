@@ -6,7 +6,7 @@ add_newline = false
 scan_timeout = 10
 
 format = "$directory$git_branch$git_status$character"
-right_format = "$aws$nodejs$python$rust$golang$package$cmd_duration$status"
+right_format = "$aws$nodejs$python${custom.python_venv_path}$rust$golang$package$cmd_duration$status"
 
 [palettes.catppuccin_mocha_muted]
 text = "#cdd6f4"
@@ -62,7 +62,24 @@ format = "[$symbol$version]($style) "
 [python]
 symbol = "py "
 style = "fg:green"
-format = "[$symbol$version]($style) "
+format = "[$symbol$version(\\($virtualenv\\))]($style) "
+
+[custom.python_venv_path]
+when = true
+command = '''
+if [ -n "$VIRTUAL_ENV" ]; then
+  printf %s "$VIRTUAL_ENV" | awk -F/ '{
+    if (NF >= 2) {
+      print "…/" $(NF-1) "/" $NF
+    } else {
+      print $0
+    }
+  }'
+fi
+'''
+shell = ["sh"]
+style = "fg:overlay0"
+format = "[$output]($style) "
 
 [rust]
 symbol = "rs "
