@@ -1,3 +1,4 @@
 .dooing.json
 .DS_STORE
 Pipfile
+*nvim.log

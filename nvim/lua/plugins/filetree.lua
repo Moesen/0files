@@ -72,8 +72,8 @@ return {
                         mappings = {
                             ["."] = "set_root",
                             ["H"] = "toggle_hidden",
-                            ["/"] = "fuzzy_finder",
-                            ["f"] = "filter_on_submit",
+                            ["/"] = "filter_on_submit",
+                            ["f"] = "fuzzy_finder",
                             ["<bs>"] = "navigate_up",
                         },
                     },
