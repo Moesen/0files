@@ -66,7 +66,45 @@ return {
                 install_dir = vim.fn.stdpath("data") .. "/site",
             })
 
-            ts.install(languages)
+            vim.api.nvim_create_user_command("TSInstallRequired", function()
+                local missing = {}
+                local ok, installed = pcall(ts.get_installed, "parsers")
+
+                if ok and installed then
+                    local installed_set = {}
+                    for _, lang in ipairs(installed) do
+                        installed_set[lang] = true
+                    end
+
+                    for _, lang in ipairs(languages) do
+                        if not installed_set[lang] then
+                            table.insert(missing, lang)
+                        end
+                    end
+                else
+                    missing = vim.deepcopy(languages)
+                end
+
+                if #missing == 0 then
+                    vim.notify("Treesitter parsers already installed", vim.log.levels.INFO, { title = "Treesitter" })
+                    return
+                end
+
+                if vim.g._ts_has_cc then
+                    ts.install(missing, { summary = true })
+                    vim.notify(
+                        "Installing missing Treesitter parsers: " .. table.concat(missing, ", "),
+                        vim.log.levels.INFO,
+                        { title = "Treesitter" }
+                    )
+                else
+                    vim.notify(
+                        "Missing Treesitter parsers: " .. table.concat(missing, ", "),
+                        vim.log.levels.WARN,
+                        { title = "Treesitter" }
+                    )
+                end
+            end, {})
 
             vim.treesitter.language.register("bash", "zsh")
 
