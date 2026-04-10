@@ -70,18 +70,25 @@ return {
                     fields = { "abbr", "kind", "menu" },
                     format = function(entry, vim_item)
                         local max_abbr = math.floor(vim.o.columns * 0.28)
-                        local max_menu = math.floor(vim.o.columns * 0.16)
+                        local max_menu = math.floor(vim.o.columns * 0.28)
 
                         if #vim_item.abbr > max_abbr then
                             vim_item.abbr = vim_item.abbr:sub(1, max_abbr - 1) .. "…"
                         end
 
-                        vim_item.menu = ({
+                        local source = ({
                             nvim_lsp = "[LSP]",
                             luasnip = "[Snip]",
                             buffer = "[Buf]",
                             path = "[Path]",
                         })[entry.source.name] or ("[" .. entry.source.name .. "]")
+
+                        local detail = vim_item.menu
+                        if detail and detail ~= "" then
+                            vim_item.menu = string.format("%s %s", source, detail)
+                        else
+                            vim_item.menu = source
+                        end
 
                         if #vim_item.menu > max_menu then
                             vim_item.menu = vim_item.menu:sub(1, max_menu - 1) .. "…"
