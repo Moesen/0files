@@ -1,3 +1,12 @@
+local function grep_selected_text()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg("v")
+	text = text:gsub("\n", " "):gsub("^%s+", ""):gsub("%s+$", "")
+	require("telescope").extensions.live_grep_args.live_grep_args({
+		default_text = text,
+	})
+end
+
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.8",
@@ -21,14 +30,13 @@ return {
 		{ "<leader>pc", "<cmd>Telescope spell_suggest<cr>", desc = "Spell Suggest" },
 		{
 			"<leader>pg",
-			function()
-				vim.cmd('noau normal! "vy"')
-				local text = vim.fn.getreg("v")
-				text = text:gsub("\n", " "):gsub("^%s+", ""):gsub("%s+$", "")
-				require("telescope").extensions.live_grep_args.live_grep_args({
-					default_text = text,
-				})
-			end,
+			grep_selected_text,
+			mode = "v",
+			desc = "Grep selected text",
+		},
+		{
+			"<leader>pG",
+			grep_selected_text,
 			mode = "v",
 			desc = "Grep selected text",
 		},
