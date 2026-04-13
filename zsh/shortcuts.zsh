@@ -13,6 +13,20 @@ fcd-zellij-widget() {
 zle -N fcd-zellij-widget
 bindkey "^N" fcd-zellij-widget
 
+fcd-zellij-attach-widget() {
+    local session_name
+    session_name=$(zellij ls -s --no-formatting | fzf \
+    --preview-window=right:60% \
+    --border \
+    --height=80%)
+    if [[ -n $session_name ]] then
+        zellij attach "$session_name"
+        zle reset-prompt
+    fi
+}
+zle -N fcd-zellij-attach-widget
+bindkey "^A" fcd-zellij-attach-widget
+
 ### Dir search from home
 fcd-home-widget() {
   local dir

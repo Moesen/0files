@@ -29,7 +29,7 @@ return {
                     "lua_ls",
                     "dockerls",
                     -- "basedpyright",
-                    "ty",
+                    -- "ty",
                     "ruff",
                     "ts_ls",
                     "html",

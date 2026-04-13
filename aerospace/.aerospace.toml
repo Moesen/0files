@@ -114,5 +114,17 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     run = ["move-node-to-workspace 8"]
 
 [[on-window-detected]]
+    if.app-name-regex-substring = "Pages"
+    run = ["mode-node-to-workspace 7"]
+
+[[on-window-detected]]
+    if.app-name-regex-substring = "Linear"
+    run = ["mode-node-to-workspace 4"]
+
+[[on-window-detected]]
+    if.app-name-regex-substring = "Notion"
+    run = ["mode-node-to-workspace 6"]
+
+[[on-window-detected]]
     if.app-name-regex-substring = "Zen"
     run = ["move-node-to-workspace 2"]
