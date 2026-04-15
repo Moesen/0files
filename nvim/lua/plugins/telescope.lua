@@ -162,7 +162,6 @@ return {
 					horizontal = {
 						prompt_position = "top",
 						preview_width = 0.65,
-						results_width = 0.35,
 					},
 					width = 0.95,
 					height = 0.92,
@@ -208,5 +207,6 @@ return {
 		local telescope = require("telescope")
 		telescope.setup(opts)
 		telescope.load_extension("live_grep_args")
+		telescope.load_extension("grapple")
 	end,
 }

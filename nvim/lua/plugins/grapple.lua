@@ -23,7 +23,7 @@ return {
 			{
 				"<leader>hh",
 				function()
-					require("grapple").toggle_tags()
+					require("telescope").extensions.grapple.tags()
 				end,
 				desc = "Show bookmarks",
 			},
