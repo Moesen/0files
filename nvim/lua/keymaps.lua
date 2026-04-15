@@ -1,13 +1,26 @@
 local Color = require("mods.color")
 local wk = require("which-key")
 
+local function current_buffer_reveal_opts()
+    local bufname = vim.api.nvim_buf_get_name(0)
+    if bufname == "" or bufname:match("^%a+://") then
+        return {}
+    end
+
+    local stat = vim.uv.fs_stat(bufname)
+    if stat and stat.type == "file" then
+        return { reveal = true }
+    end
+
+    return {}
+end
+
 local function open_neotree(opts)
     require("neo-tree.command").execute(vim.tbl_extend("force", {
         source = "filesystem",
         position = "left",
-        reveal = true,
         action = "focus",
-    }, opts or {}))
+    }, current_buffer_reveal_opts(), opts or {}))
 end
 
 vim.keymap.set("n", "<C-n>", function()

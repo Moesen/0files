@@ -48,7 +48,16 @@ return {
             background = {
                 light = "frappe",
                 dark = "mocha"
-            }
+            },
+            custom_highlights = function(colors)
+                return {
+                    TreesitterContext = { bg = colors.mantle },
+                    TreesitterContextLineNumber = { bg = colors.mantle, fg = colors.overlay1 },
+                    TreesitterContextSeparator = { fg = colors.surface2, bg = colors.base },
+                    TreesitterContextBottom = { underline = true, sp = colors.surface2 },
+                    TreesitterContextLineNumberBottom = { underline = true, sp = colors.surface2 },
+                }
+            end,
         })
         vim.cmd.colorscheme("catppuccin")
     end

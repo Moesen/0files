@@ -1,5 +1,16 @@
 return {
     {
+        "nvim-treesitter/nvim-treesitter-context",
+        opts = {
+            max_lines = 4,
+            min_window_height = 12,
+            multiline_threshold = 3,
+            trim_scope = "outer",
+            mode = "topline",
+            separator = "─",
+        },
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
         branch = "main",
         lazy = false,

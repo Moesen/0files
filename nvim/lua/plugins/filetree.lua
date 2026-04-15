@@ -9,7 +9,8 @@ return {
         },
         config = function()
             require("neo-tree").setup({
-                close_if_last_window = true,
+                -- Avoid duplicate splits when quitting with modified buffers.
+                close_if_last_window = false,
                 enable_git_status = true,
                 enable_diagnostics = true,
                 popup_border_style = "rounded",
@@ -72,8 +73,10 @@ return {
                         mappings = {
                             ["."] = "set_root",
                             ["H"] = "toggle_hidden",
-                            ["/"] = "filter_on_submit",
+                            ["/"] = "noop",
                             ["f"] = "fuzzy_finder",
+                            ["n"] = "noop",
+                            ["N"] = "noop",
                             ["<bs>"] = "navigate_up",
                         },
                     },
@@ -81,14 +84,26 @@ return {
             })
 
             local command = require("neo-tree.command")
+            local function current_buffer_reveal_opts()
+                local bufname = vim.api.nvim_buf_get_name(0)
+                if bufname == "" or bufname:match("^%a+://") then
+                    return {}
+                end
+
+                local stat = vim.uv.fs_stat(bufname)
+                if stat and stat.type == "file" then
+                    return { reveal = true }
+                end
+
+                return {}
+            end
 
             local function open_tree(opts)
                 command.execute(vim.tbl_extend("force", {
                     source = "filesystem",
                     position = "left",
                     action = "show",
-                    reveal = true,
-                }, opts or {}))
+                }, current_buffer_reveal_opts(), opts or {}))
             end
 
             vim.api.nvim_create_autocmd("VimEnter", {
