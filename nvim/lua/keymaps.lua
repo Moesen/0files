@@ -23,6 +23,55 @@ local function open_neotree(opts)
     }, current_buffer_reveal_opts(), opts or {}))
 end
 
+local function current_file_repo_root(filepath)
+    local dir = vim.fn.fnamemodify(filepath, ":h")
+    local git_root = vim.fn.systemlist({ "git", "-C", dir, "rev-parse", "--show-toplevel" })[1]
+    if vim.v.shell_error == 0 and git_root and git_root ~= "" then
+        return git_root
+    end
+    return nil
+end
+
+local function format_python_module(filepath, repo_root)
+    local base_path = repo_root and vim.fs.relpath(repo_root, filepath) or filepath
+    if not base_path or base_path == "" then
+        return filepath
+    end
+
+    local module_path = base_path:gsub("%.py$", ""):gsub("/", ".")
+    module_path = module_path:gsub("^%.+", "")
+    module_path = module_path:gsub("%.__init__$", "")
+
+    if module_path == "" then
+        return repo_root or filepath
+    end
+
+    return module_path
+end
+
+local function copy_current_file_path()
+    local filepath = vim.api.nvim_buf_get_name(0)
+    if filepath == "" then
+        vim.notify("Current buffer has no file path", vim.log.levels.WARN)
+        return
+    end
+
+    local absolute_path = vim.fn.fnamemodify(filepath, ":p")
+    local repo_root = current_file_repo_root(absolute_path)
+    local copied_path
+
+    if absolute_path:match("%.py$") then
+        copied_path = format_python_module(absolute_path, repo_root)
+    elseif repo_root then
+        copied_path = "/" .. vim.fs.relpath(repo_root, absolute_path)
+    else
+        copied_path = absolute_path
+    end
+
+    vim.fn.setreg("+", copied_path)
+    vim.notify("Copied path: " .. copied_path)
+end
+
 vim.keymap.set("n", "<C-n>", function()
     require("neo-tree.command").execute({
         source = "filesystem",
@@ -34,6 +83,7 @@ vim.keymap.set("n", "<leader>pv", function()
     open_neotree()
 end, { desc = "Focus file tree" })
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/0files/nvim/<CR>", { desc = "Open init.lua" })
+vim.keymap.set("n", "<leader>pwd", copy_current_file_path, { desc = "Copy current file path" })
 -- Open file tree in repo root if it exists
 vim.keymap.set("n", "<leader>pr", function()
     local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
@@ -60,6 +110,9 @@ vim.keymap.set("n", "<S-Tab>", "<<", { desc = "Tab left" })
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Tab right" })
 vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Tab left" })
 vim.keymap.set("n", "<C-p>", "<C-i>") -- Have to do as <C-i> same as <S-Tab>
+vim.keymap.set("n", "<C-t>", "<cmd>tabnew<cr>", { desc = "New tab" })
+vim.keymap.set("n", "<C-Tab>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+vim.keymap.set("n", "<C-S-Tab>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
 vim.keymap.set("n", "<leader>n", "<cmd>noh<cr>", { desc = "Stop highlighting seach match" })
 

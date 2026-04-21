@@ -4,10 +4,12 @@ return {
         opts = {
             max_lines = 4,
             min_window_height = 12,
-            multiline_threshold = 3,
+            multiline_threshold = 10,
             trim_scope = "outer",
             mode = "topline",
-            separator = "─",
+            separator = "",
+            line_numbers = false,
+            multiwindow = true,
         },
     },
     {

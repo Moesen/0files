@@ -43,6 +43,24 @@ fcd-home-widget() {
 zle -N fcd-home-widget
 bindkey "^H" fcd-home-widget
 
+### Dir search from home and open in new zellij tab
+fcd-home-zellij-tab-widget() {
+  local dir target tab_name
+  dir=$(cd "$HOME" && {echo "."; fd . --type d --follow --ignore-file="${ZDOTDIR}/.fdignore" --strip-cwd-prefix;} | fzf \
+    --preview 'eza --tree --icons --git --color=always {} | head -200' \
+    --preview-window=right:60% \
+    --border \
+    --height=80%)
+  if [[ -n $dir ]] then
+    target="$HOME/$dir"
+    tab_name="${target:t}"
+    zellij action new-tab --cwd "$target" --name "$tab_name" >/dev/null
+    zle reset-prompt
+  fi
+}
+zle -N fcd-home-zellij-tab-widget
+bindkey "^T" fcd-home-zellij-tab-widget
+
 ### Dir search from cur path
 fcd-cur-widget() {
   local dir

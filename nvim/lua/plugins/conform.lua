@@ -1,55 +1,73 @@
 return {
-	"stevearc/conform.nvim",
-	event = { "BufWritePre" },
-	cmd = { "ConformInfo" },
-	keys = {
-		{
-			-- Customize or remove this keymap to your liking
-			"<leader>f",
-			function()
-				require("conform").format({ formatters = { "ruff_fix" } })
-			end,
-			desc = "Run ruff fix",
-		},
-	},
-	-- This will provide type hinting with LuaLS
-	---@module "conform"
-	---@type conform.setupOpts
-	opts = {
-		-- Define your formatters
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+        {
+            -- Customize or remove this keymap to your liking
+            "<leader>f",
+            function()
+                require("conform").format({ formatters = { "ruff_organize_imports" } })
+            end,
+            desc = "Organize Python imports",
+        },
+    },
+    -- This will provide type hinting with LuaLS
+    ---@module "conform"
+    ---@type conform.setupOpts
+    opts = {
+        -- Define your formatters
 
-		formatters_by_ft = {
-			lua = { "stylua" },
-			-- python = { "ruff_fix", "ruff_format" },
-			python = { "ruff_format" },
-			javascript = { "prettierd" },
-			typescript = { "prettierd" },
-			json = { "jq" },
-			jsonc = { "jq" },
-			css = { "prettierd" },
-			c = { "clang-format" },
-			jsonl = { "jq" },
-			rust = { "rustfmt", lsp_format = "fallback" },
-			svelte = { "prettierd" },
-			terraform = { "terraform_fmt" },
-			["_"] = { "trim_whitespace" },
-		},
+        formatters_by_ft = {
+            lua = { "stylua" },
+            -- python = { "ruff_fix", "ruff_format" },
+            python = { "ruff_format" },
+            javascript = { "prettierd" },
+            typescript = { "prettierd" },
+            json = { "jq" },
+            jsonc = { "jq" },
+            css = { "prettierd" },
+            c = { "clang-format" },
+            jsonl = { "jq" },
+            rust = { "rustfmt", lsp_format = "fallback" },
+            svelte = { "prettierd" },
+            terraform = { "terraform_fmt" },
+            ["_"] = { "trim_whitespace" },
+        },
 
-		-- Set default options
-		default_format_opts = {
-			lsp_format = "fallback",
-		},
-		-- Set up format-on-save
-		format_on_save = { timeout_ms = 1000 },
-		-- Customize formatters
-		formatters = {
-			shfmt = {
-				prepend_args = { "-i", "2" },
-			},
-		},
-	},
-	init = function()
-		-- If you want the formatexpr, here is the place to set it
-		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-	end,
+        -- Set default options
+        default_format_opts = {
+            lsp_format = "fallback",
+        },
+        -- Set up format-on-save
+        format_on_save = { timeout_ms = 1000 },
+        -- Customize formatters
+        formatters = {
+            ruff_organize_imports = {
+                command = "uv",
+                args = {
+                    "tool",
+                    "run",
+                    "ruff",
+                    "check",
+                    "--fix",
+                    "--force-exclude",
+                    "--select=I001",
+                    "--exit-zero",
+                    "--no-cache",
+                    "--stdin-filename",
+                    "$FILENAME",
+                    "-",
+                },
+                stdin = true,
+            },
+            shfmt = {
+                prepend_args = { "-i", "2" },
+            },
+        },
+    },
+    init = function()
+        -- If you want the formatexpr, here is the place to set it
+        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
 }
