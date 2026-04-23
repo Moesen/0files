@@ -8,6 +8,28 @@ return {
             "MunifTanjim/nui.nvim",
         },
         config = function()
+            local function current_buffer_file_path()
+                local bufname = vim.api.nvim_buf_get_name(0)
+                if bufname == "" or bufname:match("^%a+://") then
+                    return nil
+                end
+
+                local absolute_path = vim.fn.fnamemodify(bufname, ":p")
+                local stat = vim.uv.fs_stat(absolute_path)
+                if stat and stat.type == "file" then
+                    return absolute_path
+                end
+
+                return nil
+            end
+
+            local function path_is_within_root(path, root)
+                local normalized_path = vim.fs.normalize(path)
+                local normalized_root = vim.fs.normalize(vim.fn.fnamemodify(root, ":p"))
+                return normalized_path == normalized_root
+                    or normalized_path:sub(1, #normalized_root + 1) == normalized_root .. "/"
+            end
+
             require("neo-tree").setup({
                 -- Avoid duplicate splits when quitting with modified buffers.
                 close_if_last_window = true,
@@ -84,26 +106,27 @@ return {
             })
 
             local command = require("neo-tree.command")
-            local function current_buffer_reveal_opts()
-                local bufname = vim.api.nvim_buf_get_name(0)
-                if bufname == "" or bufname:match("^%a+://") then
+            local function current_buffer_reveal_opts(root)
+                local filepath = current_buffer_file_path()
+                if not filepath then
                     return {}
                 end
 
-                local stat = vim.uv.fs_stat(bufname)
-                if stat and stat.type == "file" then
-                    return { reveal = true }
+                local reveal_root = root or vim.fn.getcwd()
+                if path_is_within_root(filepath, reveal_root) then
+                    return { reveal_file = filepath }
                 end
 
                 return {}
             end
 
             local function open_tree(opts)
+                local target_dir = opts and opts.dir or vim.fn.getcwd()
                 command.execute(vim.tbl_extend("force", {
                     source = "filesystem",
                     position = "left",
                     action = "show",
-                }, current_buffer_reveal_opts(), opts or {}))
+                }, current_buffer_reveal_opts(target_dir), opts or {}))
             end
 
             vim.api.nvim_create_autocmd("VimEnter", {

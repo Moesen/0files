@@ -9,18 +9,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP actions",
     callback = function(event)
         local wk = require("which-key")
+        local function trouble_lsp(mode)
+            return function()
+                require("trouble").toggle({
+                    mode = mode,
+                    focus = true,
+                })
+            end
+        end
+
         wk.add({ "<leader>g", group = "LSP" })
         wk.add({ "<leader>v", group = "LspActions" })
         local opts = { buffer = event.buf }
         vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-        vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-        vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-        vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-        vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-        vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+        vim.keymap.set("n", "gd", trouble_lsp("lsp_definitions"), opts)
+        vim.keymap.set("n", "gD", trouble_lsp("lsp_declarations"), opts)
+        vim.keymap.set("n", "gi", trouble_lsp("lsp_implementations"), opts)
+        vim.keymap.set("n", "go", trouble_lsp("lsp_type_definitions"), opts)
+        vim.keymap.set("n", "gO", trouble_lsp("lsp_type_definitions"), opts)
+        vim.keymap.set("n", "gr", trouble_lsp("lsp_references"), opts)
         vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
-        vim.keymap.set("n", "gci", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
-        vim.keymap.set("n", "gco", "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", opts)
+        vim.keymap.set("n", "gci", trouble_lsp("lsp_incoming_calls"), opts)
+        vim.keymap.set("n", "gco", trouble_lsp("lsp_outgoing_calls"), opts)
         vim.keymap.set("n", "<leader>vrn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
         vim.keymap.set("n", "<leader>rn", function()
             return ":IncRename " .. vim.fn.expand("<cword>")
@@ -31,14 +41,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "gf", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
         vim.keymap.set("i", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
         vim.keymap.set("n", "gti", toggle_inlay_hint, Utils.extend_opts(opts, { desc = "Toggle inlay hints" }))
-        vim.keymap.set("n", "gD", function()
-            vim.lsp.buf.definition()
-            vim.cmd("vsplit")
-        end, Utils.extend_opts(opts, { desc = "Open definition in new vsplit" }))
-        vim.keymap.set("n", "gO", function()
-            vim.lsp.buf.type_definition()
-            vim.cmd("vsplit")
-        end, Utils.extend_opts(opts, { desc = "Open type definition in new vsplit" }))
     end,
 })
 
