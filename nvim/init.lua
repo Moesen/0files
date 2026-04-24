@@ -5,28 +5,8 @@ vim.o.termguicolors = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-local function normalize_path()
-    local seen = {}
-    local parts = {}
-
-    for _, entry in ipairs(vim.split(vim.env.PATH or "", ":", { plain = true, trimempty = true })) do
-        if not entry:match("^%d+$") and not seen[entry] then
-            seen[entry] = true
-            table.insert(parts, entry)
-        end
-    end
-
-    for _, entry in ipairs({ "/opt/homebrew/bin", "/opt/homebrew/sbin", "/usr/local/bin", "/usr/local/sbin" }) do
-        if vim.uv.fs_stat(entry) and not seen[entry] then
-            table.insert(parts, 1, entry)
-            seen[entry] = true
-        end
-    end
-
-    vim.env.PATH = table.concat(parts, ":")
-end
-
-normalize_path()
+local init_funcs = require("init_funcs")
+init_funcs.normalize_path()
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -56,6 +36,7 @@ require("lazy").setup({
 -- Load vim configs
 require("options")
 require("keymaps")
+require('km')
 require("autocommands")
 require("lsp-configure")
 
