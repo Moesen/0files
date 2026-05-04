@@ -1,31 +1,6 @@
 local Color = require("mods.color")
 local wk = require("which-key")
 
--- Open file tree in repo root if it exists
-vim.keymap.set("n", "<leader>pr", function()
-    local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
-    if vim.v.shell_error == 0 then
-        vim.cmd("cd " .. vim.fn.fnameescape(git_root))
-        open_neotree({ dir = git_root })
-    else
-        print("Not in a git repository")
-    end
-end, { desc = "Focus file tree at repo root" })
-vim.keymap.set("n", "<leader>pR", function()
-    local filepath = current_buffer_file_path()
-    if not filepath then
-        vim.notify("Current buffer has no file path", vim.log.levels.WARN)
-        return
-    end
-
-    local dir = vim.fn.fnamemodify(filepath, ":h")
-    vim.cmd("cd " .. vim.fn.fnameescape(dir))
-    open_neotree({
-        dir = dir,
-        reveal_file = filepath,
-        reveal_force_cwd = true,
-    })
-end, { desc = "Focus file tree at current file dir" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Nicer down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Nicer up" })

@@ -8,7 +8,7 @@ fi
 [[ -f "${HOME}/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 [[ -f "${HOME}/.cargo/env" ]] && . "$HOME/.cargo/env"
 export PATH=$HOME/.cargo/bin:$PATH # Add cargo bin
-export PATH=$HOME/0files/cli-tools/uv/.venv/bin:$PATH # Add uv global python install
+# export PATH=$HOME/0files/cli-tools/uv/.venv/bin:$PATH # Add uv global python install
 # Antidote (Package manager)
 zsh_plugins=${ZDOTDIR}/.zsh_plugins
 [[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt

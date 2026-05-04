@@ -5,6 +5,8 @@ config-version = 2
 # In i3, all workspaces are phantom
 persistent-workspaces = []
 
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
 start-at-login = true
 
 after-startup-command = [
@@ -23,7 +25,6 @@ after-startup-command = [
    8 = '^built-in.*$'
    9 = '^built-in.*$'
 
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [mode.main.binding]
     # cmd-h = [] # Disable "Hide application"
@@ -104,6 +105,10 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [[on-window-detected]]
     if.app-name-regex-substring = "Slack"
+    run = ["move-node-to-workspace 9"]
+
+[[on-window-detected]]
+    if.app-name-regex-substring = "Signal"
     run = ["move-node-to-workspace 9"]
 
 [[on-window-detected]]

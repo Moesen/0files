@@ -50,13 +50,13 @@ function Utils.path.path_is_within_root(path, root)
 end
 
 function Utils.path.current_buffer_reveal_opts(root)
-    local filepath = Utils.Path.current_buffer_file_path()
+    local filepath = Utils.path.current_buffer_file_path()
     if not filepath then
         return {}
     end
 
     local reveal_root = root or vim.fn.getcwd()
-    if Utils.Path.path_is_within_root(filepath, reveal_root) then
+    if Utils.path.path_is_within_root(filepath, reveal_root) then
         return { reveal_file = filepath }
     end
 
@@ -97,11 +97,11 @@ function Utils.path.copy_current_file_path()
     end
 
     local absolute_path = vim.fn.fnamemodify(filepath, ":p")
-    local repo_root = current_file_repo_root(absolute_path)
+    local repo_root = Utils.path.current_file_repo_root(absolute_path)
     local copied_path
 
     if absolute_path:match("%.py$") then
-        copied_path = format_python_module(absolute_path, repo_root)
+        copied_path = Utils.path.format_python_module(absolute_path, repo_root)
     elseif repo_root then
         copied_path = "/" .. vim.fs.relpath(repo_root, absolute_path)
     else
