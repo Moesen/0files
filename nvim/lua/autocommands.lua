@@ -51,20 +51,3 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.colorcolumn = "50"
     end,
 })
-
--- vim.api.nvim_create_autocmd("BufRead", {
---     callback = function()
---         -- vim.treesitter.start()
---         -- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
---         -- vim.wo[0][0].foldmethod = "expr"
---     end
--- })
-
--- vim.api.nvim_create_autocmd("BufRead", {
---     callback = function()
---         if Utils.Godot.in_godot_project() then
---             Utils.Godot.start_server()
---             vim.lsp.config("gdscript", {})
---         end
---     end,
--- })

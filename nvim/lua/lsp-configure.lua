@@ -6,6 +6,37 @@ if vim.fn.exists(":LspInfo") == 0 then
     })
 end
 
+if vim.fn.exists(":LspRestart") == 0 then
+    vim.api.nvim_create_user_command("LspRestart", function()
+        local clients = vim.lsp.get_clients()
+        if vim.tbl_isempty(clients) then
+            vim.notify("LspRestart: no active LSP clients", vim.log.levels.INFO)
+            return
+        end
+
+        local buffers_by_client = {}
+        for _, client in ipairs(clients) do
+            buffers_by_client[client.name] = vim.lsp.get_buffers_by_client_id(client.id)
+            client:stop(true)
+        end
+
+        vim.defer_fn(function()
+            for name, bufs in pairs(buffers_by_client) do
+                for _, bufnr in ipairs(bufs) do
+                    if vim.api.nvim_buf_is_valid(bufnr) then
+                        vim.api.nvim_buf_call(bufnr, function()
+                            vim.cmd("edit")
+                        end)
+                    end
+                end
+                vim.notify("LspRestart: restarted " .. name, vim.log.levels.INFO)
+            end
+        end, 200)
+    end, {
+        desc = "Stop all active LSP clients and re-attach them to their buffers",
+    })
+end
+
 vim.diagnostic.config({
     virtual_text = {
         source = true,
@@ -14,25 +45,6 @@ vim.diagnostic.config({
         source = true,
     },
 })
-
--- vim.lsp.config("basedpyright", {
---     settings = {
---         basedpyright = {
---             analysis = {
---                 diagnosticMode = "openFilesOnly",
---                 typeCheckingMode = "basic",
---                 autoImportCompletions = true,
---                 indexing = true,
---             },
---         },
---     },
--- })
-
--- vim.lsp.config("ty", {
---     settings = {
---         ty = {},
---     },
--- })
 
 local vue_language_server_path = vim.fn.stdpath("data")
     .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
