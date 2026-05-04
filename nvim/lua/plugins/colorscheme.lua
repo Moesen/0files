@@ -46,7 +46,7 @@ return {
         require("catppuccin").setup({
             flavour = "auto",
             background = {
-                light = "frappe",
+                light = "latte",
                 dark = "mocha"
             },
             custom_highlights = function(colors)
