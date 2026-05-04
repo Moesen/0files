@@ -48,6 +48,7 @@ return {
             })
         end,
     },
+    { "lewis6991/gitsigns.nvim" },
     {
         "pwntester/octo.nvim",
         cmd = "Octo",
