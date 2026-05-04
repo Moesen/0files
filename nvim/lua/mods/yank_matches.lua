@@ -1,43 +1,3 @@
-local Color = require("mods.color")
-local wk = require("which-key")
-
-
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Nicer down" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Nicer up" })
-
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank selection to clipboard" })
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank whole line" })
-
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end, { desc = "Nvim source current file" })
-
-vim.keymap.set("n", "<Tab>", ">>", { desc = "Tab right" })
-vim.keymap.set("n", "<S-Tab>", "<<", { desc = "Tab left" })
-vim.keymap.set("v", "<Tab>", ">gv", { desc = "Tab right" })
-vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Tab left" })
-vim.keymap.set("n", "<C-p>", "<C-i>") -- Have to do as <C-i> same as <S-Tab>
-vim.keymap.set("n", "<C-t>", "<cmd>tabnew<cr>", { desc = "New tab" })
-vim.keymap.set("n", "<C-Tab>", "<cmd>tabnext<cr>", { desc = "Next tab" })
-vim.keymap.set("n", "<C-S-Tab>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
-
-vim.keymap.set("n", "<leader>n", "<cmd>noh<cr>", { desc = "Stop highlighting seach match" })
-
--- Terraform commands
-wk.add({ "<leader>t", group = "Terraform" })
-vim.keymap.set("n", "<leader>ti", "<cmd>!terraform init<CR>", { desc = "Terraform init" })
-vim.keymap.set("n", "<leader>tv", "<cmd>!terraform validate<CR>", { desc = "Terraform validate" })
-vim.keymap.set("n", "<leader>tp", "<cmd>!terraform plan<CR>", { desc = "Terraform plan" })
-vim.keymap.set("n", "<leader>ta", "<cmd>!terraform apply<CR>", { desc = "Terraform apply" })
-
-wk.add({ "<leader>m", group = "Mods" })
-wk.add({ "<leader>p", group = "Telescope" })
-vim.keymap.set("n", "<leader>mbg", Color.change_bg, { desc = "Change background" })
-wk.add({ "<leader>x", group = "Trouble" })
-
-wk.add({ "<leader>o", group = "Octo" })
-
--- in your config (e.g. lua/utils/yank_matches.lua or directly in init.lua)
 local function yank_matches(pattern)
     if not pattern or pattern == "" then
         vim.ui.input({ prompt = "Pattern: " }, function(input)
@@ -85,14 +45,12 @@ local function yank_matches(pattern)
             sorter = conf.generic_sorter({}),
             previewer = conf.grep_previewer({}),
             attach_mappings = function(prompt_bufnr, map)
-                -- <CR> copies selected match
                 actions.select_default:replace(function()
                     local selection = action_state.get_selected_entry()
                     actions.close(prompt_bufnr)
                     vim.fn.setreg("+", selection.value.text)
                     vim.notify("Copied: " .. selection.value.text)
                 end)
-                -- <C-y> copies ALL matches
                 map("i", "<C-y>", function()
                     local all = table.concat(
                         vim.tbl_map(function(r)

@@ -36,7 +36,7 @@ require("lazy").setup({
 -- Load vim configs
 require("options")
 require("keymaps")
-require('km')
+require("mods.yank_matches")
 require("autocommands")
 require("lsp-configure")
 
