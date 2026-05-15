@@ -36,6 +36,7 @@ source ${ZDOTDIR}/autocompletions.zsh
 source ${ZDOTDIR}/cli-replacement-aliases.zsh
 source ${ZDOTDIR}/shortcuts.zsh
 source ${ZDOTDIR}/llama.zsh
+source ${ZDOTDIR}/gitfetch.zsh
 
 
 # Fixes starship funcnest error
