@@ -20,6 +20,12 @@ return {
 				lualine_a = { { "mode", icons_enable = true } },
 				lualine_b = {
 					{ "lsp_status" },
+					{
+						function() return vim.g.llama_server_running and "󰚩 on" or "󰚩 off" end,
+						color = function()
+							return { fg = vim.g.llama_server_running and "#a6e3a1" or "#6c7086" }
+						end,
+					},
 				},
 				lualine_c = {
 					{

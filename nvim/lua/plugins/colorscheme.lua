@@ -38,27 +38,43 @@
 -- 		vim.cmd.colorscheme("moonfly")
 -- 	end,
 -- }
+-- return {
+--     "catppuccin/nvim",
+--     name = "catppuccin",
+--     priority = 1000,
+--     config = function()
+--         require("catppuccin").setup({
+--             flavour = "auto",
+--             background = {
+--                 light = "latte",
+--                 dark = "mocha"
+--             },
+--             custom_highlights = function(colors)
+--                 return {
+--                     TreesitterContext = { bg = colors.mantle },
+--                     TreesitterContextLineNumber = { bg = colors.mantle, fg = colors.overlay1 },
+--                     TreesitterContextSeparator = { fg = colors.surface2, bg = colors.base },
+--                     TreesitterContextBottom = { underline = true, sp = colors.surface2 },
+--                     TreesitterContextLineNumberBottom = { underline = true, sp = colors.surface2 },
+--                 }
+--             end,
+--         })
+--         vim.cmd.colorscheme("catppuccin")
+--     end
+-- }
 return {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
+    "oskarnurm/koda.nvim",
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-        require("catppuccin").setup({
-            flavour = "auto",
-            background = {
-                light = "latte",
-                dark = "mocha"
-            },
-            custom_highlights = function(colors)
-                return {
-                    TreesitterContext = { bg = colors.mantle },
-                    TreesitterContextLineNumber = { bg = colors.mantle, fg = colors.overlay1 },
-                    TreesitterContextSeparator = { fg = colors.surface2, bg = colors.base },
-                    TreesitterContextBottom = { underline = true, sp = colors.surface2 },
-                    TreesitterContextLineNumberBottom = { underline = true, sp = colors.surface2 },
-                }
-            end,
+        require("koda").setup({
+            transparent = false,
+            theme = {
+                dark = "dark",
+                light = "light"
+            }
         })
-        vim.cmd.colorscheme("catppuccin")
-    end
+        vim.cmd("colorscheme koda")
+    end,
+
 }

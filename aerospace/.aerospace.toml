@@ -10,8 +10,15 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 start-at-login = true
 
 after-startup-command = [
-    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
-]
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 style=round']
+
+[gaps]
+    inner.horizontal = 5
+    inner.vertical =   5
+    outer.left =       3
+    outer.bottom =     3
+    outer.top =        3
+    outer.right =      3
 
 
 [workspace-to-monitor-force-assignment]
@@ -32,12 +39,8 @@ after-startup-command = [
 
 
     # See: https://nikitabobko.github.io/AeroSpace/goodies#open-a-new-window-with-applescript
-    alt-enter = '''exec-and-forget osascript -e '
-    tell application "alacritty"
-        do script
-        activate
-    end tell'
-    '''
+    # cmd-enter = 'exec-and-forget open -na alacritty'
+
 
     # i3 wraps focus by default
     cmd-h =         'focus --boundaries-action wrap-around-the-workspace left --boundaries all-monitors-outer-frame'

@@ -2,3 +2,4 @@
 .DS_STORE
 Pipfile
 *nvim.log
+.zsh_sessions

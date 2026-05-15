@@ -28,5 +28,7 @@ vim.opt.pumheight = 12
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+vim.opt.autoread = true
+
 vim.lsp.inlay_hint.enable()
 vim.opt.inccommand = "nosplit"

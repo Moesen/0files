@@ -13,18 +13,20 @@ function Color.set_bg()
     -- Catppuccin sets g:colors_name to the flavour ("catppuccin-mocha");
     -- reapplying that locks the flavour, so bounce off the umbrella name
     -- "catppuccin" which honours flavour=auto.
-    if name:match("^catppuccin") then
-        name = "catppuccin"
-    end
+    -- if name:match("^catppuccin") then
+    --     name = "catppuccin"
+    -- end
     vim.cmd.colorscheme(name)
 end
 
 function Color.change_bg()
     if Color.bg_mode == "dark" then
         Color.bg_mode = "light"
+        vim.cmd("colorscheme koda-light")
         Settings.save_var("bg_mode", "light")
     else
         Color.bg_mode = "dark"
+        vim.cmd("colorscheme koda-dark")
         Settings.save_var("bg_mode", "dark")
     end
     Color.set_bg()

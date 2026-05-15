@@ -39,3 +39,6 @@ wk.add({ "<leader>p", group = "Telescope" })
 vim.keymap.set("n", "<leader>mbg", Color.change_bg, { desc = "Change background" })
 wk.add({ "<leader>x", group = "Trouble" })
 wk.add({ "<leader>o", group = "Octo" })
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
