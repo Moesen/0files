@@ -38,6 +38,7 @@ return {
                 n_suffix = 32,
                 keymap_fim_trigger = "",
                 keymap_fim_accept_word = "",
+                keymap_fim_accept_full = "<C-Tab>"
             }
             start_llama_server_probe()
         end,

@@ -22,11 +22,9 @@ end
 function Color.change_bg()
     if Color.bg_mode == "dark" then
         Color.bg_mode = "light"
-        vim.cmd("colorscheme koda-light")
         Settings.save_var("bg_mode", "light")
     else
         Color.bg_mode = "dark"
-        vim.cmd("colorscheme koda-dark")
         Settings.save_var("bg_mode", "dark")
     end
     Color.set_bg()

@@ -87,6 +87,19 @@ vim.lsp.config("bashls", {
     filetypes = { "bash", "sh", "zsh" },
 })
 
+vim.lsp.config("basedpyright", {
+    settings = {
+        basedpyright = {
+            analysis = {
+                diagnosticMode = "openFilesOnly",
+                typeCheckingMode = "basic",
+                autoImportCompletions = true,
+                indexing = true,
+            },
+        },
+    },
+})
+
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     pattern = { "*.tf", "*.tfvars" },
     command = "set filetype=terraform",
