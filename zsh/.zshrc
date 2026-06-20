@@ -19,7 +19,6 @@ if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
   antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
 fi
 ##/ BRR ZONE
-source ${zsh_plugins}.zsh
 
 export EDITOR="nvim"
 
@@ -81,3 +80,4 @@ source-pipenv() {
         echo "Could not find pipenv environment here"
     fi
 }
+source ${zsh_plugins}.zsh
