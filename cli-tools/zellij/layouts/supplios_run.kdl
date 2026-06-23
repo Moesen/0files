@@ -1,14 +1,7 @@
 layout {
     tab name="docker-runners" cwd="~/Supplios/supplios-app/django_app/" {
         pane split_direction="vertical" {
-            pane size="35%" {
-                pane {
-                    command "make"
-                    args "attach-to-web"
-                    close_on_exit true
-                }
-            }
-            pane split_direction="horizontal" size="45%" {
+            pane split_direction="horizontal" size="80%" {
                 pane {
                     command "make"
                     args "run-django"

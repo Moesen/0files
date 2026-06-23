@@ -7,6 +7,111 @@ local function grep_selected_text()
 	})
 end
 
+local function quote_arg(value)
+	return '"' .. value:gsub('"', '\\"') .. '"'
+end
+
+local function has_glob_magic(value)
+	return value:find("*", 1, true) ~= nil
+		or value:find("?", 1, true) ~= nil
+		or value:find("[", 1, true) ~= nil
+		or value:find("{", 1, true) ~= nil
+end
+
+local function is_explicit_glob_path(value)
+	return value:sub(1, 1) == "/"
+		or value:sub(1, 2) == "./"
+		or value:sub(1, 3) == "../"
+		or value:sub(1, 2) == "~/"
+		or value:sub(1, 3) == "**/"
+end
+
+local function normalize_iglob(value)
+	value = vim.trim(value or "")
+	if value == "" then
+		return {}
+	end
+
+	local prefix = ""
+	if value:sub(1, 1) == "!" then
+		prefix = "!"
+		value = vim.trim(value:sub(2))
+	end
+
+	if value == "" then
+		return {}
+	end
+
+	if has_glob_magic(value) then
+		if value:find("/", 1, true) and not is_explicit_glob_path(value) then
+			value = "**/" .. value
+		end
+		return { prefix .. value }
+	end
+
+	return {
+		prefix .. "**/*" .. value .. "*",
+		prefix .. "**/*" .. value .. "*/**",
+	}
+end
+
+local function prompt_with_args(prompt)
+	prompt = vim.trim(prompt or "")
+	if prompt == "" then
+		return nil
+	end
+
+	local first_char = prompt:sub(1, 1)
+	if first_char == '"' or first_char == "'" or first_char == "-" then
+		return prompt
+	end
+
+	return quote_arg(prompt)
+end
+
+local function smart_iglob_prompt()
+	local action_state = require("telescope.actions.state")
+
+	return function(prompt_bufnr)
+		local picker = action_state.get_current_picker(prompt_bufnr)
+		local base_prompt = prompt_with_args(picker:_get_prompt())
+		if not base_prompt then
+			vim.notify("Type a search term before adding a path filter", vim.log.levels.INFO)
+			return
+		end
+
+		vim.ui.input({ prompt = "Path filter: " }, function(input)
+			local globs = normalize_iglob(input)
+			if #globs == 0 or not vim.api.nvim_buf_is_valid(picker.prompt_bufnr) then
+				return
+			end
+
+			local parts = { base_prompt }
+			for _, glob in ipairs(globs) do
+				table.insert(parts, "--iglob")
+				table.insert(parts, quote_arg(glob))
+			end
+
+			picker:set_prompt(table.concat(parts, " "))
+		end)
+	end
+end
+
+local function raw_iglob_prompt()
+	local action_state = require("telescope.actions.state")
+
+	return function(prompt_bufnr)
+		local picker = action_state.get_current_picker(prompt_bufnr)
+		local base_prompt = prompt_with_args(picker:_get_prompt())
+		if not base_prompt then
+			vim.notify("Type a search term before adding a path filter", vim.log.levels.INFO)
+			return
+		end
+
+		picker:set_prompt(base_prompt .. " --iglob ")
+	end
+end
+
 local function loaded_todo_picker(opts)
 	opts = opts or {}
 
@@ -149,8 +254,6 @@ return {
 		},
 	},
 	opts = function()
-		local lga_actions = require("telescope-live-grep-args.actions")
-
 		return {
 			defaults = {
 				layout_strategy = "horizontal",
@@ -169,11 +272,6 @@ return {
 				},
 				preview = {
 					treesitter = false,
-				},
-				mappings = {
-					i = {
-						["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
-					},
 				},
 			},
 			pickers = {
@@ -196,7 +294,8 @@ return {
 					auto_quoting = true,
 					mappings = {
 						i = {
-							["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+							["<C-k>"] = smart_iglob_prompt(),
+							["<C-g>"] = raw_iglob_prompt(),
 						},
 					},
 				},

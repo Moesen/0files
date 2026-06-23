@@ -1,4 +1,28 @@
 return {
+    {
+        "echasnovski/mini.map",
+        version = "*",
+        keys = {
+            { "<leader>mm", function() require("mini.map").toggle() end, desc = "Toggle minimap" },
+        },
+        config = function()
+            local map = require("mini.map")
+            map.setup({
+                integrations = {
+                    map.gen_integration.builtin_search(),
+                    map.gen_integration.diagnostic(),
+                },
+                symbols = {
+                    encode = map.gen_encode_symbols.dot("4x2"),
+                },
+                window = {
+                    side = "right",
+                    width = 30,
+                    winblend = 50,
+                },
+            })
+        end,
+    },
     { "nvim-mini/mini.icons",        version = "*" },
     { "nvim-tree/nvim-web-devicons", opts = {} },
     {
