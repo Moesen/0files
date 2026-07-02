@@ -1,13 +1,8 @@
 mod cli-tools
 
-
-
-
-
 # Target that prints out all my different commands
 print-commands:
   @just --list
-
 
 svc_packages := "pipewire pipewire-pulse bluez"
 wm_packages := "hyprland xdg-desktop-portal-hyprland"
