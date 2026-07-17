@@ -6,7 +6,10 @@ return {
         config = function()
             local wk = require("which-key")
             wk.add({ "<leader>g", group = "fugitive" })
-            vim.keymap.set("n", "<leader>go", vim.cmd.Git, { desc = "Open fugitive" })
+            vim.keymap.set("n", "<leader>go", function()
+                vim.cmd("tab new")
+                vim.cmd("Git | only")
+            end, { desc = "Open fugitive" })
             vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>", { desc = "git blame" })
             vim.api.nvim_create_autocmd("BufWinEnter", {
                 group = vim.api.nvim_create_augroup("Moesen_Fugitive", { clear = true }),

@@ -112,6 +112,16 @@ local function raw_iglob_prompt()
 	end
 end
 
+local function open_telescope_results_in_trouble(prompt_bufnr)
+	require("trouble.sources.telescope").open(prompt_bufnr, {
+		focus = true,
+		win = {
+			position = "right",
+			size = 0.35,
+		},
+	})
+end
+
 local function loaded_todo_picker(opts)
 	opts = opts or {}
 
@@ -272,6 +282,14 @@ return {
 				},
 				preview = {
 					treesitter = false,
+				},
+				mappings = {
+					i = {
+						["<C-q>"] = open_telescope_results_in_trouble,
+					},
+					n = {
+						["<C-q>"] = open_telescope_results_in_trouble,
+					},
 				},
 			},
 			pickers = {

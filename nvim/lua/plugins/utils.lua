@@ -26,58 +26,6 @@ return {
         opts = {},
     },
     {
-        "folke/trouble.nvim",
-        opts = {
-            win = {
-                size = 0.4,
-            },
-        }, -- for default options, refer to the configuration section for custom setup.
-        cmd = "Trouble",
-        keys = {
-            {
-                "<leader>xx",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics",
-            },
-            {
-                "<leader>xX",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "Buffer Diagnostics",
-            },
-            {
-                "<leader>xs",
-                "<cmd>Trouble symbols toggle focus=false<cr>",
-                desc = "Symbols",
-            },
-            {
-                "<leader>xl",
-                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... ",
-            },
-            {
-                "<leader>xr",
-                "<cmd>Trouble lsp_references toggle focus=true win.position=right<cr>",
-                desc = "References",
-            },
-            {
-                "<leader>xL",
-                function()
-                    local loclist = vim.fn.getloclist(0)
-                    if vim.tbl_isempty(loclist) then
-                        vim.diagnostic.setloclist({ open = false })
-                    end
-                    vim.cmd("Trouble loclist toggle")
-                end,
-                desc = "Location List",
-            },
-            {
-                "<leader>xQ",
-                "<cmd>Trouble qflist toggle<cr>",
-                desc = "Quickfix List",
-            },
-        },
-    },
-    {
         "kylechui/nvim-surround",
         version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",

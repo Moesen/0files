@@ -27,12 +27,6 @@ vim.keymap.set("n", "<leader>n", "<cmd>noh<cr>", { desc = "Stop highlighting sea
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/0files/nvim/<CR>", { desc = "Open init.lua" })
 vim.keymap.set("n", "<leader>pwd", Utils.path.copy_current_file_path, { desc = "Copy current file path" })
 
--- Terraform commands
-wk.add({ "<leader>t", group = "Terraform" })
-vim.keymap.set("n", "<leader>ti", "<cmd>!terraform init<CR>", { desc = "Terraform init" })
-vim.keymap.set("n", "<leader>tv", "<cmd>!terraform validate<CR>", { desc = "Terraform validate" })
-vim.keymap.set("n", "<leader>tp", "<cmd>!terraform plan<CR>", { desc = "Terraform plan" })
-vim.keymap.set("n", "<leader>ta", "<cmd>!terraform apply<CR>", { desc = "Terraform apply" })
 
 wk.add({ "<leader>m", group = "Mods" })
 wk.add({ "<leader>p", group = "Telescope" })

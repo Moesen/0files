@@ -119,7 +119,36 @@ return {
                 desc = "Quickfix List",
             },
             {
-                "<leader>xt",
+                "<leader>xg",
+                function()
+                    require("mods.trouble_search").grep()
+                end,
+                desc = "Grep in Trouble",
+            },
+            {
+                "<leader>xg",
+                function()
+                    require("mods.trouble_search").grep_selection()
+                end,
+                mode = "v",
+                desc = "Grep selection in Trouble",
+            },
+            {
+                "<leader>xG",
+                function()
+                    require("mods.trouble_search").last_grep()
+                end,
+                desc = "Repeat Trouble grep",
+            },
+            {
+                "<leader>xf",
+                function()
+                    require("mods.trouble_search").files()
+                end,
+                desc = "Files in Trouble",
+            },
+            {
+                "<C-x>",
                 function()
                     local views = require("trouble.view").get({ open = true })
                     if #views > 0 then

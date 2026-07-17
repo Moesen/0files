@@ -1,0 +1,42 @@
+term=xterm-256color
+window-colorspace = display-p3
+config-file = ./nightfox.ghostty
+
+font-thicken=true
+font-size=16
+macos-option-as-alt = true
+
+
+# Let zellij/nvim receive these instead of Ghostty consuming them for window tabs.
+keybind=super+digit_1=unbind
+keybind=super+1=unbind
+keybind=super+digit_2=unbind
+keybind=super+2=unbind
+keybind=super+digit_3=unbind
+keybind=super+3=unbind
+keybind=super+digit_4=unbind
+keybind=super+4=unbind
+keybind=super+digit_5=unbind
+keybind=super+5=unbind
+keybind=super+digit_6=unbind
+keybind=super+6=unbind
+keybind=super+digit_7=unbind
+keybind=super+7=unbind
+keybind=super+digit_8=unbind
+keybind=super+8=unbind
+keybind=super+9=unbind
+keybind=super+alt+w=unbind
+keybind=super+t=unbind
+keybind=super+shift+[=unbind
+keybind=super+shift+]=unbind
+
+keybind=super+ctrl+shift+j=unbind
+keybind=super+ctrl+f=unbind
+keybind=super+ctrl+=unbind
+keybind=super+ctrl+arrow_right=unbind
+keybind=super+ctrl+arrow_left=unbind
+keybind=super+ctrl+arrow_down=unbind
+keybind=super+ctrl+arrow_up=unbind
+
+keybind=ctrl+tab=esc:[27;5;9~
+keybind=ctrl+shift+tab=esc:[27;6;9~

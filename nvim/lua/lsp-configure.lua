@@ -23,6 +23,9 @@ vim.lsp.config("basedpyright", {
                 typeCheckingMode = "basic",
                 autoImportCompletions = true,
                 indexing = true,
+                diagnosticSeverityOverrides = {
+                    reportPrivateImportUsage = "none"
+                }
             },
         },
     },
@@ -36,6 +39,8 @@ vim.lsp.config("basedpyright", {
 
 local vue_language_server_path = vim.fn.stdpath("data")
     .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+
+vim.lsp.config('vue_ls', {})
 
 vim.lsp.config("ts_ls", {
     filetypes = {
