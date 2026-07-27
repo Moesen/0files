@@ -24,7 +24,8 @@ vim.lsp.config("basedpyright", {
                 autoImportCompletions = true,
                 indexing = true,
                 diagnosticSeverityOverrides = {
-                    reportPrivateImportUsage = "none"
+                    reportPrivateImportUsage = "none",
+                    reportUnreachable = "none"
                 }
             },
         },

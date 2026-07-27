@@ -1,23 +1,23 @@
 layout {
     tab name="docker-runners" cwd="~/Supplios/supplios-app/django_app/" {
         pane split_direction="vertical" {
-            pane split_direction="horizontal" size="80%" {
+            pane split_direction="horizontal" size="60%" {
                 pane {
                     command "make"
                     args "run-django"
                 }
-                pane {
+            }
+            pane split_direction="horizontal" size="40%" {
+                pane size="80%" {
                     cwd "~/Supplios/supplios-app/django_app/_frontend"
                     command "npm"
                     args "run" "build-lib-watch"
                 }
-            }
-            pane split_direction="horizontal" size="20%" {
-                pane {
+                pane size="10%" {
                     command "make"
                     args "run-celery-worker"
                 }
-                pane {
+                pane size="10%" {
                     command "make"
                     args "run-celery-beat"
                 }
