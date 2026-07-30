@@ -61,6 +61,9 @@ return {
                     lsp = {
                         win = { position = "right", size = 0.30 },
                     },
+                    lsp_references = {
+                        win = { position = "right", size = 0.30 },
+                    },
                     lsp_incoming_calls = {
                         win = { position = "right", size = 0.30 },
                     },

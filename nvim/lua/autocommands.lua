@@ -23,6 +23,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
         vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
         vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+        vim.keymap.set("n", "grr", "<cmd>Trouble lsp_references toggle focus=true<cr>", Utils.extend_opts(opts, {
+            desc = "References in Trouble",
+        }))
         vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
         vim.keymap.set("n", "gci", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", opts)
         vim.keymap.set("n", "gco", "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", opts)
