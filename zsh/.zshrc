@@ -73,6 +73,11 @@ if [[ -d "/opt/homebrew/opt/libpq/bin/" ]]; then
     export PATH="/opt/homebrew/opt/libpq/bin/:$PATH"
 fi
 
+if [[ -d "$HOME/.bun" ]]; then
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
 source-pipenv() {
     if pipenv --venv >/dev/null 2>&1; then
         eval $(pipenv activate)
@@ -85,3 +90,6 @@ source ${zsh_plugins}.zsh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/Users/moesen/.bun/_bun" ] && source "/Users/moesen/.bun/_bun"

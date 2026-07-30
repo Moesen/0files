@@ -69,6 +69,12 @@ return {
                 "vim",
                 "vimdoc",
                 "yaml",
+                "svelte",
+                "javascript",
+                "typescript",
+                "css",
+                "tsx",
+                "jsx",
             }
 
             if vim.g._ts_has_cc then
@@ -133,6 +139,7 @@ return {
                 "vim",
                 "yaml",
                 "zsh",
+                "svelte",
             }
 
             vim.api.nvim_create_autocmd("FileType", {
@@ -170,6 +177,8 @@ return {
                 "yaml",
                 "html",
                 "python",
+                "svelte",
+
             }
 
             vim.api.nvim_create_autocmd("FileType", {

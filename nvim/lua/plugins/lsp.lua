@@ -35,6 +35,7 @@ return {
                     "ts_ls",
                     -- "html",
                     "bashls",
+                    "svelte",
                 },
                 handlers = {
                     function(server_name)
