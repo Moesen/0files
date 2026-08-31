@@ -1,3 +1,5 @@
+.zcompcache
+.zsh_sessions
 .antidote
 .zcompdump*
 .zsh_plugins.zsh

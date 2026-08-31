@@ -46,7 +46,7 @@ return {
                     type = "split",
                     relative = "editor",
                     position = "right",
-                    size = 0.30,
+                    size = 0.20,
                 },
                 preview = {
                     type = "main",

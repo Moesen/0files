@@ -76,3 +76,44 @@ vim.api.nvim_create_autocmd("FileType", {
 --         end
 --     end,
 -- })
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "sql",
+    callback = function(args)
+        local root = vim.fs.root(args.buf, { "wrangler.toml", ".git" })
+        if not root then return end
+
+        local files = vim.fn.glob(
+            root .. "/.wrangler/state/v3/d1/miniflare-D1DatabaseObject/*.sqlite",
+            false,
+            true
+        )
+
+        local database
+        for _, path in ipairs(files) do
+            if not path:match("/metadata%.sqlite$") then
+                database = path
+                break
+            end
+        end
+
+        if not database then return end
+
+        vim.lsp.config("sqls", {
+            root_dir = root,
+            settings = {
+                sqls = {
+                    connections = {
+                        {
+                            alias = "d1-local",
+                            driver = "sqlite3",
+                            dataSourceName = database,
+                        },
+                    },
+                },
+            },
+        })
+
+        vim.lsp.enable("sqls")
+    end,
+})

@@ -40,7 +40,5 @@ require("mods.yank_matches")
 require("autocommands")
 require("lsp-configure")
 
-require("lualine").setup({})
-
 local Colors = require("mods.color")
 Colors.set_bg()

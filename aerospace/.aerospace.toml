@@ -102,23 +102,23 @@ exec-on-workspace-change = ['/bin/bash', '-c',
 
     cmd-shift-c = 'reload-config'
 
-    cmd-r = 'mode resize'
+    # cmd-r = 'mode resize'
 
-[mode.resize.binding]
-    h = 'resize width -100'
-    j = 'resize height +100'
-    k = 'resize height -100'
-    l = 'resize width +100'
-    enter = 'mode main'
-    esc = 'mode main'
+# [mode.resize.binding]
+#     h = 'resize width -100'
+#     j = 'resize height +100'
+#     k = 'resize height -100'
+#     l = 'resize width +100'
+#     enter = 'mode main'
+#     esc = 'mode main'
 
 [[on-window-detected]]
     if.app-name-regex-substring = "Slack"
     run = ["move-node-to-workspace 9"]
 
-[[on-window-detected]]
-    if.app-name-regex-substring = "Signal"
-    run = ["move-node-to-workspace 9"]
+# [[on-window-detected]]
+#     if.app-name-regex-substring = "Signal"
+#     run = ["move-node-to-workspace 9"]
 
 [[on-window-detected]]
     if.app-name-regex-substring = "Telegram"
@@ -132,13 +132,13 @@ exec-on-workspace-change = ['/bin/bash', '-c',
     if.app-name-regex-substring = "Pages"
     run = ["move-node-to-workspace 7"]
 
-[[on-window-detected]]
-    if.app-name-regex-substring = "Linear"
-    run = ["move-node-to-workspace 4"]
+# [[on-window-detected]]
+#     if.app-name-regex-substring = "Linear"
+#     run = ["move-node-to-workspace 4"]
 
-[[on-window-detected]]
-    if.app-name-regex-substring = "Notion"
-    run = ["move-node-to-workspace 6"]
+# [[on-window-detected]]
+#     if.app-name-regex-substring = "Notion"
+#     run = ["move-node-to-workspace 6"]
 
 [[on-window-detected]]
     if.app-name-regex-substring = "Zen"
@@ -147,3 +147,8 @@ exec-on-workspace-change = ['/bin/bash', '-c',
 [[on-window-detected]]
     if.app-name-regex-substring = "Code"
     run = ["move-node-to-workspace 3"]
+
+[[on-window-detected]]
+    if.app-id = 'md.obsidian'
+    if.window-title-regex-substring = '^Settings - '
+    run = 'layout floating'
