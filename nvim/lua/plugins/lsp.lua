@@ -7,6 +7,16 @@ return {
     {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile", "BufEnter" },
+        cmd = { "PythonLspPicker" },
+        keys = {
+            {
+                "<leader>mlsp",
+                function()
+                    require("mods.python_lsp").pick()
+                end,
+                desc = "Python LSPs",
+            },
+        },
         dependencies = {
             { "hrsh7th/cmp-nvim-lsp" },
             { "mason-org/mason.nvim" },
@@ -18,8 +28,11 @@ return {
             { "saadparwaiz1/cmp_luasnip" },
         },
         config = function()
+            require("lsp-configure")
+
             -- Setup defaults
             local lsp_defaults = require("lspconfig").util.default_config
+            local python_lsp = require("mods.python_lsp")
 
             lsp_defaults.capabilities =
                 vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
@@ -29,13 +42,17 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "dockerls",
-                    -- "basedpyright",
-                    -- "ty",
+                    "basedpyright",
+                    "pyrefly",
+                    "ty",
                     "ruff",
                     "ts_ls",
                     -- "html",
                     "bashls",
                     "svelte",
+                },
+                automatic_enable = {
+                    exclude = python_lsp.servers,
                 },
                 handlers = {
                     function(server_name)
@@ -43,6 +60,7 @@ return {
                     end,
                 },
             })
+            python_lsp.setup()
             require("luasnip.loaders.from_vscode").lazy_load()
             local cmp = require("cmp")
             local completion_window = cmp.config.window.bordered({
