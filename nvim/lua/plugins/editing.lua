@@ -4,37 +4,62 @@ return {
         version = "^3.0.0",
         event = "VeryLazy",
         config = function()
+            local typescript_generic_syntax = {
+                opening = "<",
+                closing = ">",
+                find = "[%w_.$:@'%-]+%b<>",
+                delete = "^(.-<)().-(>)()$",
+            }
+
+            local generic_syntax = {
+                python = {
+                    opening = "[",
+                    closing = "]",
+                    find = "[%w_.$:@'%-]+%b[]",
+                    delete = "^(.-%[)().-(%])()$",
+                },
+                typescript = typescript_generic_syntax,
+                typescriptreact = typescript_generic_syntax,
+                vue = typescript_generic_syntax,
+                svelte = typescript_generic_syntax,
+            }
+
+            local function get_generic_syntax()
+                return generic_syntax[vim.bo.filetype]
+            end
+
             require("nvim-surround").setup({
                 surrounds = {
                     ["g"] = {
                         add = function()
+                            local syntax = get_generic_syntax()
+                            if not syntax then
+                                return
+                            end
+
                             local config = require("nvim-surround.config")
                             local result = config.get_input("Enter function/generic name: ")
                             if result then
-                                return { { result .. "<" }, { ">" } }
+                                return { { result .. syntax.opening }, { syntax.closing } }
                             end
                         end,
                         find = function()
-                            return require("nvim-surround.config").get_selection({
-                                pattern = "[%w_.$:@'%-]+%b<>",
-                            })
-                        end,
-                        delete = "^(.-<)().-(>)()$",
-                    },
-                    ["G"] = {
-                        add = function()
-                            local config = require("nvim-surround.config")
-                            local result = config.get_input("Enter function/generic name: ")
-                            if result then
-                                return { { result .. "[" }, { "]" } }
+                            local syntax = get_generic_syntax()
+                            if syntax then
+                                return require("nvim-surround.config").get_selection({
+                                    pattern = syntax.find,
+                                })
                             end
                         end,
-                        find = function()
-                            return require("nvim-surround.config").get_selection({
-                                pattern = "[%w_.$:@'%-]+%b[]",
-                            })
+                        delete = function()
+                            local syntax = get_generic_syntax()
+                            if syntax then
+                                return require("nvim-surround.config").get_selections({
+                                    char = "g",
+                                    pattern = syntax.delete,
+                                })
+                            end
                         end,
-                        delete = "^(.-%[)().-(%])()$",
                     },
                 },
             })
