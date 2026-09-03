@@ -93,3 +93,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # bun completions
 [ -s "/Users/moesen/.bun/_bun" ] && source "/Users/moesen/.bun/_bun"
+
+alias tde="nvim ~/.todo.md"
+alias tdv="cat ~/.todo.md"
+alias hl="rg --passthrough"
