@@ -26,41 +26,6 @@ return {
         opts = {},
     },
     {
-        "kylechui/nvim-surround",
-        version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
-        event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({
-                surrounds = {
-                    ["g"] = {
-                        add = function()
-                            local config = require("nvim-surround.config")
-                            local result = config.get_input("Enter function/generic name: ")
-                            if result then
-                                return { { result .. "<" }, { ">" } }
-                            end
-                        end,
-                        find = function()
-                            return require("nvim-surround.config").get_selection({ motion = "ag" })
-                        end,
-                    },
-                    ["G"] = {
-                        add = function()
-                            local config = require("nvim-surround.config")
-                            local result = config.get_input("Enter function/generic name: ")
-                            if result then
-                                return { { result .. "[" }, { "]" } }
-                            end
-                        end,
-                        find = function()
-                            return require("nvim-surround.config").get_selection({ motion = "ag" })
-                        end,
-                    },
-                },
-            })
-        end,
-    },
-    {
         "folke/which-key.nvim",
         event = "VeryLazy",
         opts = {

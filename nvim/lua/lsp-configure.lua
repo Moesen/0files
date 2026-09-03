@@ -32,11 +32,39 @@ vim.lsp.config("basedpyright", {
     },
 })
 
--- vim.lsp.config("ty", {
---     settings = {
---         ty = {},
---     },
--- })
+vim.lsp.config("pyrefly", {
+    settings = {
+        python = {
+            pyrefly = {
+                diagnosticMode = "openFilesOnly",
+                typeCheckingMode = "basic",
+            },
+            analysis = {
+                autoImportCompletions = true,
+                inlayHints = {
+                    callArgumentNames = "all",
+                    functionReturnTypes = true,
+                    variableTypes = true,
+                },
+            },
+        },
+    },
+})
+
+vim.lsp.config("ty", {
+    settings = {
+        ty = {
+            diagnosticMode = "openFilesOnly",
+            completions = {
+                autoImport = true,
+            },
+            inlayHints = {
+                callArgumentNames = true,
+                variableTypes = true,
+            },
+        },
+    },
+})
 
 local vue_language_server_path = vim.fn.stdpath("data")
     .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"

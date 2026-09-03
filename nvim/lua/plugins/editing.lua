@@ -15,8 +15,11 @@ return {
                             end
                         end,
                         find = function()
-                            return require("nvim-surround.config").get_selection({ motion = "ag" })
+                            return require("nvim-surround.config").get_selection({
+                                pattern = "[%w_.$:@'%-]+%b<>",
+                            })
                         end,
+                        delete = "^(.-<)().-(>)()$",
                     },
                     ["G"] = {
                         add = function()
@@ -27,8 +30,11 @@ return {
                             end
                         end,
                         find = function()
-                            return require("nvim-surround.config").get_selection({ motion = "ag" })
+                            return require("nvim-surround.config").get_selection({
+                                pattern = "[%w_.$:@'%-]+%b[]",
+                            })
                         end,
+                        delete = "^(.-%[)().-(%])()$",
                     },
                 },
             })
