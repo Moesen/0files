@@ -71,7 +71,6 @@ return {
             ruff_organize_imports = {
                 command = "uv",
                 args = {
-                    "tool",
                     "run",
                     "ruff",
                     "check",

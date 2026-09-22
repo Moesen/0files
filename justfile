@@ -44,6 +44,7 @@ install-rust-tools:
   cargo install ripgrep --locked
   cargo install tailspin --locked
   cargo install --locked watchexec-cli
+  cargo install --locked cargo-seek
 [group("Cargo")]
 install-uv: install-rust
   cargo install --locked --git https://github.com/astral-sh/uv uv

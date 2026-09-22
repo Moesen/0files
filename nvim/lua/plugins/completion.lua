@@ -1,21 +1,89 @@
 return {
     {
-        "L3MON4D3/LuaSnip",
-        dependencies = { "rafamadriz/friendly-snippets" },
-    },
-    {
         "hrsh7th/nvim-cmp",
         event = { "BufReadPre", "BufNewFile", "BufEnter" },
         dependencies = {
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-path" },
-            "L3MON4D3/LuaSnip",
+            {
+                "L3MON4D3/LuaSnip",
+                dependencies = { "rafamadriz/friendly-snippets" },
+            },
             "saadparwaiz1/cmp_luasnip",
         },
         config = function()
+            local luasnip = require("luasnip")
+
+            luasnip.setup({
+                update_events = { "TextChanged", "TextChangedI" },
+                region_check_events = { "CursorMoved", "CursorHold" },
+                delete_check_events = { "TextChanged", "InsertLeave" },
+            })
+
             require("luasnip.loaders.from_vscode").lazy_load()
+            require("luasnip.loaders.from_lua").lazy_load({
+                paths = { vim.fn.stdpath("config") .. "/luasnippets" },
+            })
+
+            vim.api.nvim_create_user_command("LuaSnipAddSnippet", function(opts)
+                local filetype = opts.args ~= "" and opts.args or vim.bo.filetype
+
+                if filetype == "" then
+                    vim.notify("No filetype detected; pass one explicitly, e.g. :LuaSnipAddSnippet lua", vim.log.levels.ERROR)
+                    return
+                end
+
+                if not filetype:match("^[%w_.+-]+$") then
+                    vim.notify("Invalid snippet filetype: " .. filetype, vim.log.levels.ERROR)
+                    return
+                end
+
+                local snippet_dir = vim.fn.stdpath("config") .. "/luasnippets"
+                local snippet_file = snippet_dir .. "/" .. filetype .. ".lua"
+
+                vim.fn.mkdir(snippet_dir, "p")
+
+                if vim.fn.filereadable(snippet_file) == 0 then
+                    local result = vim.fn.writefile({
+                        'local ls = require("luasnip")',
+                        'local fmt = require("luasnip.extras.fmt").fmt',
+                        "",
+                        "local s = ls.snippet",
+                        "local i = ls.insert_node",
+                        "local t = ls.text_node",
+                        "",
+                        "return {",
+                        "}",
+                    }, snippet_file)
+
+                    if result ~= 0 then
+                        vim.notify("Could not create snippet file: " .. snippet_file, vim.log.levels.ERROR)
+                        return
+                    end
+                end
+
+                vim.cmd.edit({ args = { snippet_file } })
+            end, {
+                nargs = "?",
+                complete = function(arg_lead)
+                    return vim.fn.getcompletion(arg_lead, "filetype")
+                end,
+                desc = "Open the custom LuaSnip file for a filetype",
+            })
+
             local cmp = require("cmp")
+            local compare = require("cmp.config.compare")
+
+            local function snippets_first(entry1, entry2)
+                local first_is_snippet = entry1.source.name == "luasnip"
+                local second_is_snippet = entry2.source.name == "luasnip"
+
+                if first_is_snippet ~= second_is_snippet then
+                    return first_is_snippet
+                end
+            end
+
             local completion_window = cmp.config.window.bordered({
                 col_offset = -1,
                 side_padding = 0,
@@ -67,11 +135,25 @@ return {
                         return vim_item
                     end,
                 },
+                sorting = {
+                    comparators = {
+                        snippets_first,
+                        compare.offset,
+                        compare.exact,
+                        compare.score,
+                        compare.recently_used,
+                        compare.locality,
+                        compare.kind,
+                        compare.sort_text,
+                        compare.length,
+                        compare.order,
+                    },
+                },
                 sources = {
-                    { name = "path" },
+                    { name = "luasnip", keyword_length = 2 },
                     { name = "nvim_lsp" },
+                    { name = "path" },
                     { name = "buffer" },
-                    { name = "luasnip", keyword_length = 3 },
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<C-Space>"] = cmp.mapping.complete(),

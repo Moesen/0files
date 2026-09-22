@@ -117,3 +117,15 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.lsp.enable("sqls")
     end,
 })
+
+-- Pick up files rewritten outside neovim (e.g. marimo autosave while running
+-- `marimo edit --watch`). `autoread` only takes effect when a check is triggered.
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+    pattern = "*",
+    callback = function()
+        if vim.fn.mode() ~= "c" and vim.fn.getcmdwintype() == "" then
+            vim.cmd("checktime")
+        end
+    end,
+    desc = "Reload buffers changed on disk",
+})
