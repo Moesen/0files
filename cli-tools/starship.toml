@@ -1,6 +1,6 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
-palette = "catppuccin_mocha_muted"
+palette = "gruvbox_dark"
 
 add_newline = false
 scan_timeout = 10
@@ -8,17 +8,17 @@ scan_timeout = 10
 format = "$directory$git_branch$git_status$character"
 right_format = "$aws$nodejs$python${custom.python_venv_path}$rust$golang$package$cmd_duration$status"
 
-[palettes.catppuccin_mocha_muted]
-text = "#cdd6f4"
-subtext0 = "#a6adc8"
-overlay0 = "#6c7086"
-surface1 = "#45475a"
-surface2 = "#585b70"
-blue = "#89b4fa"
-green = "#a6e3a1"
-yellow = "#f9e2af"
-peach = "#fab387"
-red = "#f38ba8"
+[palettes.gruvbox_dark]
+text = "#ebdbb2"
+subtext0 = "#d5c4a1"
+overlay0 = "#928374"
+surface1 = "#504945"
+surface2 = "#a89984"
+blue = "#83a598"
+green = "#b8bb26"
+yellow = "#fabd2f"
+peach = "#fe8019"
+red = "#fb4934"
 
 [directory]
 style = "fg:text"

@@ -1,0 +1,121 @@
+// Gruvbox dark, medium contrast — https://github.com/morhetz/gruvbox
+themes {
+    gruvbox-dark {
+        text_unselected {
+            base 235 219 178
+            background 40 40 40
+            emphasis_0 250 189 47
+            emphasis_1 251 73 52
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        text_selected {
+            base 235 219 178
+            background 60 56 54
+            emphasis_0 250 189 47
+            emphasis_1 251 73 52
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        ribbon_selected {
+            base 40 40 40
+            background 250 189 47
+            emphasis_0 251 73 52
+            emphasis_1 184 187 38
+            emphasis_2 211 134 155
+            emphasis_3 142 192 124
+        }
+        ribbon_unselected {
+            base 40 40 40
+            background 168 153 132
+            emphasis_0 250 189 47
+            emphasis_1 235 219 178
+            emphasis_2 211 134 155
+            emphasis_3 142 192 124
+        }
+        table_title {
+            base 250 189 47
+            background 0
+            emphasis_0 251 73 52
+            emphasis_1 184 187 38
+            emphasis_2 142 192 124
+            emphasis_3 211 134 155
+        }
+        table_cell_selected {
+            base 235 219 178
+            background 60 56 54
+            emphasis_0 250 189 47
+            emphasis_1 251 73 52
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        table_cell_unselected {
+            base 235 219 178
+            background 40 40 40
+            emphasis_0 250 189 47
+            emphasis_1 251 73 52
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        list_selected {
+            base 235 219 178
+            background 60 56 54
+            emphasis_0 250 189 47
+            emphasis_1 251 73 52
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        list_unselected {
+            base 235 219 178
+            background 40 40 40
+            emphasis_0 250 189 47
+            emphasis_1 251 73 52
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        frame_selected {
+            base 250 189 47
+            background 0
+            emphasis_0 251 73 52
+            emphasis_1 184 187 38
+            emphasis_2 211 134 155
+            emphasis_3 0
+        }
+        frame_highlight {
+            base 251 73 52
+            background 0
+            emphasis_0 250 189 47
+            emphasis_1 251 73 52
+            emphasis_2 251 73 52
+            emphasis_3 251 73 52
+        }
+        exit_code_success {
+            base 184 187 38
+            background 0
+            emphasis_0 250 189 47
+            emphasis_1 40 40 40
+            emphasis_2 211 134 155
+            emphasis_3 142 192 124
+        }
+        exit_code_error {
+            base 251 73 52
+            background 0
+            emphasis_0 254 128 25
+            emphasis_1 0
+            emphasis_2 0
+            emphasis_3 0
+        }
+        multiplayer_user_colors {
+            player_1 211 134 155
+            player_2 142 192 124
+            player_3 0
+            player_4 250 189 47
+            player_5 251 73 52
+            player_6 0
+            player_7 184 187 38
+            player_8 0
+            player_9 0
+            player_10 0
+        }
+    }
+}

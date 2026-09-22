@@ -252,7 +252,7 @@ simplified_ui true
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "nightfox"
+theme "gruvbox-dark"
 
 // Choose the base input mode of zellij.
 // Default: normal
@@ -431,5 +431,4 @@ show_startup_tips false
 // Default: true
 //
 show_release_notes false
-
 

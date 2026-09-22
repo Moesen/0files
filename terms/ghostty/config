@@ -1,6 +1,6 @@
 term=xterm-256color
 window-colorspace = display-p3
-config-file = ./nightfox.ghostty
+config-file = ./gruvbox.ghostty
 
 font-thicken=true
 font-size=16

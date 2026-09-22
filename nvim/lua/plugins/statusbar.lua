@@ -37,7 +37,9 @@ return {
                     {
                         function() return vim.g.llama_server_running and "󰚩 on" or "󰚩 off" end,
                         color = function()
-                            return { fg = vim.g.llama_server_running and "#a6e3a1" or "#6c7086" }
+                            local group = vim.g.llama_server_running and "GruvboxGreen" or "GruvboxGray"
+                            local fg = vim.api.nvim_get_hl(0, { name = group, link = false }).fg
+                            return { fg = fg and string.format("#%06x", fg) }
                         end,
                     },
                 },

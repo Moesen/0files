@@ -10,12 +10,7 @@ function Color.set_bg()
     local name = vim.g.colors_name
     vim.o.bg = Color.bg_mode
     if not name then return end
-    -- Catppuccin sets g:colors_name to the flavour ("catppuccin-mocha");
-    -- reapplying that locks the flavour, so bounce off the umbrella name
-    -- "catppuccin" which honours flavour=auto.
-    -- if name:match("^catppuccin") then
-    --     name = "catppuccin"
-    -- end
+    -- Gruvbox uses the same scheme name for both background modes.
     vim.cmd.colorscheme(name)
 end
 

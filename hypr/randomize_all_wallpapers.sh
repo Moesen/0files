@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-WALLPAPER_DIR="$HOME/0files/wallpapers/light"
+WALLPAPER_DIR="$HOME/0files/wallpapers/dark"
 
 if ! command -v jq >/dev/null 2>&1; then
     echo "jq is required for randomize_all_wallpapers.sh" >&2

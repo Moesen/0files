@@ -1,27 +1,27 @@
-@define-color black	#22262D;
-@define-color red	#c4746e;
-@define-color green	#8a9a7b;
-@define-color yellow	#c4b28a;
-@define-color blue	#8ba4b0;
-@define-color purple	#a292a3;
-@define-color cyan	#8ea4a2;
-@define-color gray	#a4a7a4;
-@define-color brgray	#5C6066;
-@define-color brred	#e46876;
-@define-color brgreen	#87a987;
-@define-color bryellow	#e6c384;
-@define-color brblue	#7fb4ca;
-@define-color brpurple	#938aa9;
-@define-color brcyan	#7aa89f;
-@define-color white	#C5C9C7;
-@define-color bg2	#43464E;
+@define-color black	#282828;
+@define-color red	#cc241d;
+@define-color green	#98971a;
+@define-color yellow	#d79921;
+@define-color blue	#458588;
+@define-color purple	#b16286;
+@define-color cyan	#689d6a;
+@define-color gray	#a89984;
+@define-color brgray	#928374;
+@define-color brred	#fb4934;
+@define-color brgreen	#b8bb26;
+@define-color bryellow	#fabd2f;
+@define-color brblue	#83a598;
+@define-color brpurple	#d3869b;
+@define-color brcyan	#8ec07c;
+@define-color white	#ebdbb2;
+@define-color bg2	#3c3836;
 
-@define-color gradient1 #505359;
-@define-color gradient2 #5C5F64;
-@define-color gradient3 #686B6F;
-@define-color gradient4 #747779;
-@define-color gradient5 #808384;
-@define-color gradient6 #8C8F8F;
+@define-color gradient1 #504945;
+@define-color gradient2 #665c54;
+@define-color gradient3 #7c6f64;
+@define-color gradient4 #928374;
+@define-color gradient5 #a89984;
+@define-color gradient6 #bdae93;
 
 @define-color warning 	@bryellow;
 @define-color critical	@brred;
@@ -172,7 +172,7 @@
 }
 
 #disk {
-  color: @black;
+  color: @white;
   background: @gradient3;
 }
 
@@ -183,12 +183,12 @@
 }
 
 #bluetooth {
-  color: white;
+  color: @white;
   background: @gradient2;
 }
 
 #pulseaudio {
-  color: @black;
+  color: @white;
   background: @gradient2;
 }
 
@@ -238,6 +238,6 @@
 }
 
 #custom-power:hover {
-  color: white;
-  background: black;
+  color: @white;
+  background: @black;
 }
