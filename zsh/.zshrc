@@ -36,6 +36,7 @@ source ${ZDOTDIR}/cli-replacement-aliases.zsh
 source ${ZDOTDIR}/shortcuts.zsh
 source ${ZDOTDIR}/llama.zsh
 source ${ZDOTDIR}/gitfetch.zsh
+source ${ZDOTDIR}/functions.zsh
 
 
 # Fixes starship funcnest error
@@ -96,4 +97,4 @@ export NVM_DIR="$HOME/.nvm"
 
 alias tde="nvim ~/.todo.md"
 alias tdv="cat ~/.todo.md"
-alias hl="rg --passthrough"
+alias hl="rg --passthrough --color=always"

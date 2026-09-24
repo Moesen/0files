@@ -51,6 +51,7 @@ return {
             jsonl = { "jq" },
             rust = { "rustfmt", lsp_format = "fallback" },
             svelte = { "prettierd" },
+            vue = { "prettierd" },
             terraform = { "terraform_fmt" },
             ["_"] = { "trim_whitespace" },
         },
