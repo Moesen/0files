@@ -33,12 +33,7 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "dockerls",
-                    -- "basedpyright",
-                    -- "pyrefly",
-                    "ty",
-                    "ruff",
                     "ts_ls",
-                    -- "html",
                     "bashls",
                     "svelte",
                 },

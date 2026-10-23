@@ -78,5 +78,9 @@ make-symlinks:
   # Not technically a symlink but close
   ln -sfn ~/0files/zsh/.zshenv ~/.zshenv
 
+[group("nix")]
+rebuild:
+    sudo nixos-rebuild switch -I nixos-config=$HOME/0files/nix/hosts/desktop/configuration.nix
+
 install: install-svc-packages install-wm install-dev-packages install-rust install-rust-tools
 setup: make-symlinks install
