@@ -7,6 +7,7 @@
     <home-manager/nixos>
     ../../modules/nixos/nvidia.nix
     ../../modules/dev.nix
+    ../../modules/nixos/gaming.nix
   ];
 
   home-manager.useGlobalPkgs = true;

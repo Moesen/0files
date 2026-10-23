@@ -1,5 +1,7 @@
-{ config, pkgs, ... }: {
+{ config, ... }:
+{
   home.stateVersion = "26.05";
+  imports = [ ../modules/nixos/monitors.nix ];
 
   programs.git = {
     enable = true;
