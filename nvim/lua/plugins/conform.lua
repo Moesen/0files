@@ -47,6 +47,7 @@ return {
             json = { "jq" },
             jsonc = { "jq" },
             css = { "prettierd" },
+            nix = { "nixfmt" },
             c = { "clang-format" },
             jsonl = { "jq" },
             rust = { "rustfmt", lsp_format = "fallback" },

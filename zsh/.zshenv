@@ -11,4 +11,6 @@ fi
 
 # uv
 export PATH="${HOME}/.local/bin:$PATH"
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi

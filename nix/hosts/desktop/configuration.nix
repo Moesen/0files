@@ -1,22 +1,40 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      <home-manager/nixos>
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    <home-manager/nixos>
+    ../../modules/nixos/nvidia.nix
+    ../../modules/dev.nix
+  ];
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  home-manager.users.moesen = import ../../home/moesen.nix;
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.configurationLimit = 5;
+
+  # Change boot loader to grub for themeability and to solve getting windows as an option
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    useOSProber = true;
+    configurationLimit = 5;
+    theme = pkgs.nixos-grub2-theme;
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
+  nix.settings.auto-optimise-store = true; # dedupes identical files in the store
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_6_12;
@@ -56,13 +74,13 @@
   };
 
   services.keyd = {
-  	enable = true;
-	keyboards.default = {
-		ids = [ "*" ];
-		settings.main = {
-			capslock = "esc";
-		};
-	};
+    enable = true;
+    keyboards.default = {
+      ids = [ "*" ];
+      settings.main = {
+        capslock = "esc";
+      };
+    };
   };
 
   # Enable CUPS to print documents.
@@ -85,85 +103,30 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "Gustav";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-    #  thunderbird
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
     ];
   };
-
-  virtualisation.docker.enable = true;
 
   programs.firefox.enable = true;
   programs.hyprland.enable = true;
   programs.zsh.enable = true;
   programs.nix-ld.enable = true;
 
-  home-manager.users.moesen = { config, pkgs, ...}: {
-    home.stateVersion = "26.05";
-
-     programs.git = {
-           enable = true;
-           settings = {
-           	user.name = "Moesen";
-           	user.email = "gustav@moesen.dk";
-           	pull.rebase = true;
-           	push.default = "current";
-           };
-     };
-
-     xdg.configFile = {
-           "nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/0files/nvim";
-           "alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/0files/terms/alacritty";
-           "ghostty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/0files/terms/ghostty";
-           "zellij".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/0files/cli-tools/zellij";
-           "starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/0files/cli-tools/starship.toml";
-     };
-     home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/0files/zsh/.zshenv";
-
-  };
-
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  hardware.graphics = {
-  	enable = true;
-	enable32Bit = true;
-  };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.nvidia = {
-  	modesetting.enable = true;
-	open = true;
-	nvidiaSettings = true;
-	package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
   environment.systemPackages = with pkgs; [
-  	# dev packages
-  	neovim just kitty fzf bat jq yq antidote
-	# dev_deps (a lot of lsp's for nvim depend on (p)npm
-	nodejs_22 pnpm
-	# rust toolchain
-	rustup
-	# cargo tools / upgrades
-	starship dust fd eza zellij ripgrep tailspin watchexec
-	# python dev
-	uv ruff ty
-
-  	pciutils git wl-clipboard
+    pciutils
+    git
+    wl-clipboard
   ];
 
-  programs.neovim = {
-  	enable = true;
-	defaultEditor = true;
-	withPython3 = true;
-  };
-
   fonts.packages = with pkgs; [
-	  font-awesome
-	  nerd-fonts.jetbrains-mono
+    font-awesome
+    nerd-fonts.jetbrains-mono
   ];
 
   system.stateVersion = "26.05";
