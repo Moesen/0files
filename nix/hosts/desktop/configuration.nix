@@ -8,6 +8,7 @@
     ../../modules/nixos/nvidia.nix
     ../../modules/dev.nix
     ../../modules/nixos/gaming.nix
+    ../../modules/common.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -68,6 +69,9 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
+  # Mouse
+  services.ratbagd.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -123,6 +127,8 @@
     pciutils
     git
     wl-clipboard
+    piper
+    solaar
   ];
 
   fonts.packages = with pkgs; [
