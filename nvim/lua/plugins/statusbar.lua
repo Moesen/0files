@@ -25,6 +25,10 @@ local function get_filename()
     return vim.fn.fnamemodify(filename, ":~:.")
 end
 
+local function get_diff_buffer()
+    return vim.wo.diff and ("buf" .. vim.api.nvim_get_current_buf()) or ""
+end
+
 return {
     {
         "nvim-lualine/lualine.nvim",
@@ -74,12 +78,12 @@ return {
             },
             winbar = {
                 lualine_c = {
-                    { get_filename },
+                    { get_diff_buffer, get_filename },
                 },
             },
             inactive_winbar = {
                 lualine_c = {
-                    { get_filename },
+                    { get_diff_buffer, get_filename },
                 },
             },
         },

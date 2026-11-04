@@ -10,7 +10,17 @@ return {
                 vim.cmd("tab new")
                 vim.cmd("Git | only")
             end, { desc = "Open fugitive" })
-            vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>", { desc = "git blame" })
+            vim.keymap.set("n", "<leader>gb", function()
+                for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+                    local buf = vim.api.nvim_win_get_buf(win)
+                    if vim.bo[buf].filetype == "fugitiveblame" then
+                        vim.api.nvim_set_current_win(win)
+                        vim.cmd("normal gq")
+                        return
+                    end
+                end
+                vim.cmd("Git blame --date=short")
+            end, { desc = "Toggle git blame" })
             vim.api.nvim_create_autocmd("BufWinEnter", {
                 group = vim.api.nvim_create_augroup("Moesen_Fugitive", { clear = true }),
                 pattern = "*",
@@ -96,6 +106,14 @@ return {
             -- OR "ibhagwan/fzf-lua",
             -- OR "folke/snacks.nvim",
             "nvim-tree/nvim-web-devicons",
+        },
+    },
+    {
+        "rbong/vim-flog",
+        lazy = true,
+        cmd = { "Flog", "Flogsplit", "Floggit" },
+        dependencies = {
+            "tpope/vim-fugitive",
         },
     },
 }

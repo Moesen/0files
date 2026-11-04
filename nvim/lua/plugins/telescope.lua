@@ -264,8 +264,13 @@ return {
 		},
 	},
 	opts = function()
+		local vimgrep_arguments = vim.deepcopy(require("telescope.config").values.vimgrep_arguments)
+		-- Include dotfiles while preserving ignore rules and skipping Git internals.
+		vim.list_extend(vimgrep_arguments, { "--hidden", "--glob", "!.git" })
+
 		return {
 			defaults = {
+				vimgrep_arguments = vimgrep_arguments,
 				layout_strategy = "horizontal",
 				sorting_strategy = "ascending",
 				prompt_prefix = "   ",
@@ -293,7 +298,11 @@ return {
 				},
 			},
 			pickers = {
-				find_files = {},
+				find_files = {
+					hidden = true,
+					no_ignore = false,
+					find_command = { "rg", "--files", "--color", "never", "--glob", "!.git" },
+				},
 				live_grep = {
 					previewer = true,
 					additional_args = function()

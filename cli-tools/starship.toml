@@ -5,7 +5,8 @@ palette = "gruvbox_dark"
 add_newline = false
 scan_timeout = 10
 
-format = "$directory$git_branch$git_status$character"
+format = """$directory$git_branch$git_status
+$username$character"""
 right_format = "$aws$nodejs$python${custom.python_venv_path}$rust$golang$package$cmd_duration$status"
 
 [palettes.gruvbox_dark]
@@ -23,17 +24,19 @@ red = "#fb4934"
 [directory]
 style = "fg:text"
 truncation_length = 3
-truncate_to_repo = false
+truncate_to_repo = true
 repo_root_style = "bold fg:blue"
 before_repo_root_style = "fg:overlay0"
-repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style) "
+repo_root_format = "[ ]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style) "
 read_only = " ro"
 read_only_style = "fg:red"
+truncation_symbol = "../"
 
 [git_branch]
 symbol = "git "
 style = "fg:subtext0"
 format = "[$symbol$branch]($style) "
+truncation_length = 9
 
 [git_status]
 style = "fg:yellow"
@@ -55,12 +58,12 @@ style = "fg:peach"
 format = "[$symbol$profile($region)]($style) "
 
 [nodejs]
-symbol = "node "
+symbol = " "
 style = "fg:green"
 format = "[$symbol$version]($style) "
 
 [python]
-symbol = "py "
+symbol = " "
 style = "fg:green"
 format = "[$symbol$version(\\($virtualenv\\))]($style) "
 
