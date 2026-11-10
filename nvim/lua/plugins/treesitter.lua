@@ -54,11 +54,15 @@ return {
             local ts = require("nvim-treesitter")
 
             local languages = {
+                "caddy",
                 "bash",
                 "c",
+                "css",
                 "diff",
                 "html",
+                "javascript",
                 "json",
+                "jsx",
                 "lua",
                 "luadoc",
                 "markdown",
@@ -66,15 +70,12 @@ return {
                 "python",
                 "query",
                 "regex",
+                "svelte",
+                "tsx",
+                "typescript",
                 "vim",
                 "vimdoc",
                 "yaml",
-                "svelte",
-                "javascript",
-                "typescript",
-                "css",
-                "tsx",
-                "jsx",
             }
 
             if vim.g._ts_has_cc then
@@ -129,6 +130,7 @@ return {
 
             local highlight_filetypes = {
                 "bash",
+                "caddy",
                 "c",
                 "diff",
                 "html",
@@ -170,6 +172,7 @@ return {
             -- })
 
             local indent_filetypes = {
+                "caddy",
                 "lua",
                 "bash",
                 "zsh",

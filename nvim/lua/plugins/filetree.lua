@@ -79,6 +79,13 @@ return {
                         ["R"] = "refresh",
                     },
                 },
+                git_status = {
+                    components = {
+                        name = function(...)
+                            return require("mods.branch_tree").name_component(...)
+                        end,
+                    },
+                },
                 filesystem = {
                     -- bind_to_cwd = true,
                     follow_current_file = {

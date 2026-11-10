@@ -1,4 +1,5 @@
 local utils = require('mods.utils')
+local BranchTree = require('mods.branch_tree')
 
 local function open_neotree(opts)
     local target_dir = opts and opts.dir or vim.fn.getcwd()
@@ -10,14 +11,20 @@ local function open_neotree(opts)
 end
 
 vim.keymap.set("n", "<C-n>", function()
-    require("neo-tree.command").execute({
-        source = "filesystem",
+    require("neo-tree.command").execute(vim.tbl_extend("force", {
         position = "left",
         toggle = true,
-    })
+    }, (BranchTree.source_opts())))
 end, { desc = "Toggle file tree" })
 
 vim.keymap.set("n", "<leader>pv", function()
+    if BranchTree.is_enabled() then
+        require("neo-tree.command").execute(vim.tbl_extend("force", {
+            position = "left",
+            action = "focus",
+        }, (BranchTree.source_opts())))
+        return
+    end
     open_neotree()
 end, { desc = "Focus file tree" })
 
@@ -46,3 +53,6 @@ vim.keymap.set("n", "<leader>pR", function()
         reveal_force_cwd = true,
     })
 end, { desc = "Focus file tree at current file dir" })
+
+
+vim.keymap.set("n", "<leader>mpb", BranchTree.toggle, { desc = "Toggle file tree: changes vs parent branch" })

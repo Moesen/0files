@@ -3,7 +3,7 @@ window-colorspace = display-p3
 config-file = ./gruvbox.ghostty
 
 font-thicken=true
-font-size=16
+font-size=22
 macos-option-as-alt = true
 
 

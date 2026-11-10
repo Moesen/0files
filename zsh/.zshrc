@@ -98,3 +98,7 @@ export NVM_DIR="$HOME/.nvm"
 alias tde="nvim ~/.todo.md"
 alias tdv="cat ~/.todo.md"
 alias hl="rg --passthrough --color=always"
+
+hless() {
+    rg --passthrough --color=always -- "$@" | less -R
+}

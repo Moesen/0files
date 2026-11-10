@@ -36,22 +36,20 @@ return {
         -- Define your formatters
 
         formatters_by_ft = {
-            lua = { "stylua" },
-            -- python = { "ruff_fix", "ruff_format" },
-            python = { "ruff_format" },
-            -- javascript = { "prettierd" },
-            -- typescript = { "prettierd" },
-            javascript = { "biome-check" },
-            typescript = { "biome-check" },
+            c = { "clang-format" },
+            caddy = { "caddy" },
+            css = { "prettierd" },
             html = { "djlint" },
+            javascript = { "biome-check" },
             json = { "jq" },
             jsonc = { "jq" },
-            css = { "prettierd" },
-            c = { "clang-format" },
             jsonl = { "jq" },
+            lua = { "stylua" },
+            python = { "ruff_format" },
             rust = { "rustfmt", lsp_format = "fallback" },
             svelte = { "prettierd" },
             terraform = { "terraform_fmt" },
+            typescript = { "biome-check" },
             ["_"] = { "trim_whitespace" },
         },
 
@@ -68,6 +66,11 @@ return {
         end,
         -- Customize formatters
         formatters = {
+            caddy = {
+                command = 'caddy',
+                args = { 'fmt', "-" },
+                stdin = true,
+            },
             ruff_organize_imports = {
                 command = "uv",
                 args = {

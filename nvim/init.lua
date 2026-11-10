@@ -36,9 +36,11 @@ require("lazy").setup({
 -- Load vim configs
 require("options")
 require("keymaps")
+require("filetypes")
 require("mods.yank_matches")
 require("autocommands")
 require("lsp-configure")
+
 
 local Colors = require("mods.color")
 Colors.set_bg()
